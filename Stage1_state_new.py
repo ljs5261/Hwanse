@@ -5,7 +5,7 @@ import game_framework
 from Ataho import Ataho
 from grass import Grass
 from BackGround import BackGround
-
+from tree import Tree
 name = "MainState"
 
 ataho = None
@@ -13,19 +13,22 @@ team_grass =[]
 team_bg = []
 grass_xpos_plus = 400
 bg_xpos_plus = 400
+tree1 = None
 
 
 def enter():
-    global ataho, grass_xpos_plus, bg_xpos_plus, team_grass, team_bg
+    global ataho, grass_xpos_plus, bg_xpos_plus, team_grass, team_bg, tree1
     ataho = Ataho()
-    for i in range(0, 4):
+    for i in range(0, 3):
         team_grass += [Grass(grass_xpos_plus)]
         grass_xpos_plus += 800
-    for i in range(0, 4):
+    for i in range(0, 3):
         team_bg += [BackGround(bg_xpos_plus)]
         bg_xpos_plus += 800
+    tree1 = Tree(1100)
 
     game_world.add_object(ataho, 1)
+    game_world.add_object(tree1, 1)
     for grass in team_grass:
         game_world.add_object(grass, 0)
     for bg in team_bg:
@@ -45,7 +48,7 @@ def resume():
 
 
 def handle_events():
-    global ataho, team_grass, team_bg
+    global ataho, team_grass, team_bg, tree1
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -58,26 +61,31 @@ def handle_events():
                 grass.handle_event(event)
             for bg in team_bg:
                 bg.handle_event(event)
+            tree1.handle_event(event)
 
 
 def update():
-    global ataho, team_grass, team_bg
-    for bg in team_bg:
-        bg.update(ataho)
-    for grass in team_grass:
-        grass.update(ataho)
+    global ataho, team_grass, team_bg, tree1
+    if team_grass[2].x >= 400:
+        for bg in team_bg:
+            bg.update(ataho)
+        for grass in team_grass:
+            grass.update(ataho)
+
     ataho.update()
+    tree1.update(ataho)
     delay(0.08)
 
 
 def draw():
-    global ataho, team_grass, team_bg
+    global ataho, team_grass, team_bg, tree1
     clear_canvas()
     for bg in team_bg:
         bg.draw()
     for grass in team_grass:
         grass.draw()
     ataho.draw()
+    tree1.draw()
     update_canvas()
 
 
