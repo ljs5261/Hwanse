@@ -1,34 +1,39 @@
 from pico2d import *
-
+import game_world
 import game_framework
 
 from Ataho import Ataho
 from grass import Grass
-from BackGround1 import BackGround
+from BackGround import BackGround
 
 name = "MainState"
 
 ataho = None
-bg = None
-team =[]
-xpos_plus = 400
+team_grass =[]
+team_bg = []
+grass_xpos_plus = 400
+bg_xpos_plus = 400
 
 
 def enter():
-    global ataho, bg, xpos_plus, team
+    global ataho, grass_xpos_plus, bg_xpos_plus, team_grass, team_bg
     ataho = Ataho()
-    for i in range(0, 1):
-        team += [Grass(xpos_plus)]
-        xpos_plus += 800
-    bg = BackGround()
+    for i in range(0, 4):
+        team_grass += [Grass(grass_xpos_plus)]
+        grass_xpos_plus += 800
+    for i in range(0, 4):
+        team_bg += [BackGround(bg_xpos_plus)]
+        bg_xpos_plus += 800
+
+    game_world.add_object(ataho, 1)
+    for grass in team_grass:
+        game_world.add_object(grass, 0)
+    for bg in team_bg:
+        game_world.add_object(bg, 0)
 
 
 def exit():
-    global ataho, team, bg
-    del ataho
-    for grass in team:
-        del grass
-    del bg
+    game_world.clear()
 
 
 def pause():
@@ -40,7 +45,7 @@ def resume():
 
 
 def handle_events():
-    global ataho, team
+    global ataho, team_grass, team_bg
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -49,22 +54,28 @@ def handle_events():
                 game_framework.quit()
         else:
             ataho.handle_event(event)
-            for grass in team:
+            for grass in team_grass:
                 grass.handle_event(event)
+            for bg in team_bg:
+                bg.handle_event(event)
 
 
 def update():
-    global ataho, team
-    ataho.update()
-    for grass in team:
+    global ataho, team_grass, team_bg
+    for bg in team_bg:
+        bg.update(ataho)
+    for grass in team_grass:
         grass.update(ataho)
+    ataho.update()
     delay(0.08)
 
 
 def draw():
-    global ataho, team, bg
+    global ataho, team_grass, team_bg
     clear_canvas()
-    for grass in team:
+    for bg in team_bg:
+        bg.draw()
+    for grass in team_grass:
         grass.draw()
     ataho.draw()
     update_canvas()

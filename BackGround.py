@@ -10,40 +10,40 @@ key_event_table = {
 
 class IdleState:
     @staticmethod
-    def enter(grass1, event):
+    def enter(bg, event):
         if event == RIGHT_UP:
-            grass1.velocity = 0
+            bg.velocity = 0
 
     @staticmethod
-    def exit(grass1, event):
+    def exit(bg, event):
         pass
 
     @staticmethod
-    def do(grass1):
+    def do(bg):
         pass
 
     @staticmethod
-    def draw(grass1):
-        grass1.image.draw(grass1.x, grass1.y)
+    def draw(bg):
+        bg.image.draw(bg.x, bg.y)
 
 
 class RunState:
     @staticmethod
-    def enter(grass1, event):
+    def enter(bg, event):
         if event == RIGHT_DOWN:
-            grass1.velocity = -5
+            bg.velocity = -3
 
     @staticmethod
-    def exit(grass1, event):
+    def exit(bg, event):
         pass
 
     @staticmethod
-    def do(grass1):
-        grass1.x += grass1.velocity
+    def do(bg):
+        bg.x += bg.velocity
 
     @staticmethod
-    def draw(grass1):
-        grass1.image.draw(grass1.x, grass1.y)
+    def draw(bg):
+        bg.image.draw(bg.x, bg.y)
 
 
 next_state_table = {
@@ -52,11 +52,11 @@ next_state_table = {
 }
 
 
-class Grass:
+class BackGround:
 
     def __init__(self, xpos):
-        self.x, self.y = xpos, 30
-        self.image = load_image('./Resource/grass.png')
+        self.x, self.y = xpos, 300
+        self.image = load_image('./Resource/grassland.png')
         self.velocity = 0
         self.event_que = []
         self.cur_state = IdleState
@@ -81,4 +81,5 @@ class Grass:
         if (event.type, event.key) in key_event_table:
             key_event = key_event_table[(event.type, event.key)]
             self.add_event(key_event)
+
 
