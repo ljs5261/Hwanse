@@ -1,19 +1,20 @@
 import game_framework
 from pico2d import *
+import Stage1_state_new
 
-from Project import main_state
+name = "TitleState"
+image = None
 
-name= "TitleState"
-image=None
-title_time = 0
 
 def enter():
     global image
-    image = load_image('hwanse.png')
+    image = load_image('./Resource/hwanse.png')
+
 
 def exit():
     global image
-    del(image)
+    del image
+
 
 def handle_events():
     events = get_events()
@@ -23,20 +24,29 @@ def handle_events():
         else:
             if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
                 game_framework.quit()
-            elif (event.type, event.key)==(SDL_KEYDOWN, SDLK_SPACE):
-                game_framework.change_state(main_state)
+            elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
+                game_framework.change_state(Stage1_state_new)
 
-
-def update():
-    global title_time
-
-    if (title_time > 1.0):
-        title_time = 0
-        # game_framework.quit()
-        game_framework.change_state(main_state)
-        delay(0.01)
 
 def draw():
     clear_canvas()
     image.draw(400,300)
     update_canvas()
+
+
+def update():   # 그림만 보여주면 되므로 업데이트할 필요없다
+    pass
+
+
+def pause():
+    pass
+
+
+def resume():
+    pass
+
+
+
+
+
+

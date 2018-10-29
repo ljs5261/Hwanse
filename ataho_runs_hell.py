@@ -52,14 +52,14 @@ class Background2:
         self.x -= 2
 
 
-class Ataho:
+class ataho:
     def __init__(self):
         self.image = load_image('./Resource/ataho.png')
         self.x, self.y = 200, 85
-        self.frame = 5
+        self.frame = 0
 
     def draw_ataho(self):
-        self.image.clip_draw(self.frame * 60, 0, 60, 100, 200, 85)  # 5-9프레임까지 돌아야된다.
+        self.image.clip_draw(self.frame * 60, 0, 60, 100, 200, 85)
         self.frame = (self.frame + 1) % 5
 
     def move_ataho(self):
@@ -97,7 +97,7 @@ bg1 = BackGround1()
 bg2 = Background2()
 g1 = Ground1()
 g2 = Ground2()
-at = Ataho()
+at = ataho()
 gargoyle = Gargoyle()
 gargoyle_frame_count = 0
 devil = Devil()

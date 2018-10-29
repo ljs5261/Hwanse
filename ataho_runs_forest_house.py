@@ -1,5 +1,4 @@
 from pico2d import *
-open_canvas()
 
 
 class Ground1:
@@ -50,18 +49,30 @@ class Background2:
         self.x -= 2
 
 
-class Ataho:
+class ataho:
     def __init__(self):
         self.image = load_image('./Resource/ataho.png')
         self.x, self.y = 300, 120
-        self.frame = 5
+        self.frame = 0
 
     def draw_ataho(self):
-        self.image.clip_draw(self.frame * 60, 0, 60, 100, 300, 120)  # 5-9프레임까지 돌아야된다.
+        self.image.clip_draw(self.frame * 60, 0, 60, 100, 300, 120)
         self.frame = (self.frame + 1) % 5
 
     def move_ataho(self):
         pass
+
+
+class Bisangak:
+    def __init__(self):
+        self.image = load_image('./Resource/맹호비상각완성.png')
+        self.x, self.y = 100, 200
+
+    def draw_bisangak(self):
+        self.image.draw(self.x, 200)
+
+    def move_bisangak(self):
+        self.x += 5
 
 
 class Dragon:
@@ -108,10 +119,12 @@ bg1 = BackGround1()
 bg2 = Background2()
 g1 = Ground1()
 g2 = Ground2()
-at = Ataho()
+at = ataho()
 dr = Dragon()
 rin = Rinshang()
 lightning = Lightning()
+bisangak = Bisangak()
+
 dr_frame_count = 0
 rin_frame_count = 0
 
@@ -134,14 +147,16 @@ while True:
     bg2.move_bg()
     g1.move_grass()
     g2.move_grass()
+    bisangak.move_bisangak()
 
     bg1.draw_bg()
     bg2.draw_bg()
     g1.draw_grass()
     g2.draw_grass()
-    at.draw_ataho()
-    lightning.draw_lightning()
-    # rin.draw_rinshang()
+    bisangak.draw_bisangak()
+    # at.draw_ataho()
+    # lightning.draw_lightning()
+    rin.draw_rinshang()
     # dr.draw_dragon()
     if dr_frame_count % 4 == 0:
         dr.dragon_frame()
@@ -154,5 +169,5 @@ while True:
     dr_frame_count += 1
     rin_frame_count += 1
 
-close_canvas()
+
 

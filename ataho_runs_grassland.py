@@ -1,5 +1,4 @@
 from pico2d import *
-open_canvas()
 
 
 class Ground1:
@@ -62,14 +61,15 @@ class Tree:
         self.x -= 5
 
 
-class Ataho:
+class ataho:
     def __init__(self):
         self.image = load_image('./Resource/ataho.png')
         self.x, self.y = 200, 90
-        self.frame = 5
+        self.frame = 0
 
     def draw_ataho(self):
-        self.image.clip_draw(self.frame * 60, 0, 60, 100, 200, 90)  # 5-9프레임까지 돌아야된다.
+
+        self.image.clip_draw(self.frame * 60, 0, 60, 100, 200, 90)
         self.frame = (self.frame + 1) % 5
 
     def move_ataho(self):
@@ -107,13 +107,13 @@ class Alcohol:
     def draw_alcohol(self):
         self.image.draw(400, 90)
 
-
+'''
 bg1 = BackGround1()
 bg2 = Background2()
 g1 = Ground1()
 g2 = Ground2()
 pig = Pig()
-at = Ataho()
+at = ataho()
 dumpling = Dumpling()
 tree = Tree()
 alcohol = Alcohol()
@@ -152,6 +152,6 @@ while True:
     update_canvas()
 
     delay(0.1)
+'''
 
-close_canvas()
 
