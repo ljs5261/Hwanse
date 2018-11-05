@@ -10,72 +10,70 @@ key_event_table = {
 
 class IdleState:
     @staticmethod
-    def enter(pig, event):
+    def enter(wolf, event):
         pass
 
     @staticmethod
-    def exit(grass1, event):
+    def exit(wolf, event):
         pass
 
     @staticmethod
-    def do(pig):
-        if pig.move_count < 30:
-            pig.frame = (pig.frame + 1) % 4
-            pig.x -= pig.idle_velocity
-            pig.move_count += 1
-        if pig.move_count >= 30:
-            pig.frame = (pig.frame + 1) % 4
-            pig.x += pig.idle_velocity
-            pig.move_count += 1
-        if pig.move_count == 60:
-            pig.move_count = 0
+    def do(wolf):
+        if wolf.move_count < 30:
+            wolf.frame = (wolf.frame + 1) % 5
+            wolf.x -= wolf.idle_velocity
+            wolf.move_count += 1
+        if wolf.move_count >= 30:
+            wolf.frame = (wolf.frame + 1) % 5
+            wolf.x += wolf.idle_velocity
+            wolf.move_count += 1
+        if wolf.move_count == 60:
+            wolf.move_count = 0
 
     @staticmethod
-    def draw(pig):
-        pig.image.clip_draw(pig.frame * 110, 0, 110, 100, pig.x, pig.y)
+    def draw(wolf):
+        wolf.image.clip_draw(wolf.frame * 64, 0, 64, 40, wolf.x, wolf.y)
 
 
-class RunState:
+class MoveState:
     @staticmethod
-    def enter(pig, event):
-        if event == RIGHT_DOWN:
-            pig.velocity = -5
-
-    @staticmethod
-    def exit(pig, event):
+    def enter(wolf, event):
         pass
 
     @staticmethod
-    def do(pig):
-        if pig.move_count < 30:
-            pig.frame = (pig.frame + 1) % 4
-            pig.x -= pig.idle_velocity + 5
-            pig.move_count += 1
-        if pig.move_count >= 30:
-            pig.frame = (pig.frame + 1) % 4
-            pig.x += 0
-            pig.move_count += 1
-        if pig.move_count == 60:
-            pig.move_count = 0
+    def exit(wolf, event):
+        pass
 
     @staticmethod
-    def draw(pig):
-        pig.image.clip_draw(pig.frame * 110, 0, 110, 100, pig.x, pig.y)
+    def do(wolf):
+        if wolf.move_count < 30:
+            wolf.frame = (wolf.frame + 1) % 5
+            wolf.x -= wolf.idle_velocity + 5
+            wolf.move_count += 1
+        if wolf.move_count >= 30:
+            wolf.frame = (wolf.frame + 1) % 5
+            wolf.x += 0
+            wolf.move_count += 1
+        if wolf.move_count == 60:
+            wolf.move_count = 0
+
+    @staticmethod
+    def draw(wolf):
+        wolf.image.clip_draw(wolf.frame * 64, 0, 64, 40, wolf.x, wolf.y)
 
 
 next_state_table = {
-    IdleState: {RIGHT_DOWN: RunState},
-    RunState: {RIGHT_UP: IdleState}
+    IdleState: {RIGHT_DOWN: MoveState},
+    MoveState: {RIGHT_UP: IdleState}
 }
 
 
-class Pig:
+class Wolf:
 
-    def __init__(self):
-        self.x, self.y = 2300, 80
-        self.image = load_image('./Resource/pig_rush.png')
+    def __init__(self, xpos):
+        self.x, self.y = xpos, 66
+        self.image = load_image('./Resource/wolf1.png')
         self.frame = 0
-        self.velocity = 0
         self.idle_velocity = 5
         self.move_count = 0
         self.event_que = []
@@ -101,4 +99,3 @@ class Pig:
         if (event.type, event.key) in key_event_table:
             key_event = key_event_table[(event.type, event.key)]
             self.add_event(key_event)
-
