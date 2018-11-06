@@ -1,79 +1,64 @@
 from pico2d import *
+import game_framework
+
+# ataho run speed
+# 100pixel = 2m
+PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter
+RUN_SPEED_MPS = 1.5                 # meter / second
+RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)       # pixel / second, 75
+JUMP_SPEED_PPS = 9 * (RUN_SPEED_MPS * PIXEL_PER_METER)  # pixel / second, 150
+ACCELERATION_OF_GRAVITY = 10.0     # meter / second * second
+FRAME_TIME = 0.16
+VARIATION_OF_VELOCITY_MPS = (ACCELERATION_OF_GRAVITY * FRAME_TIME)  # meter / second, 0.16
+VARIATION_OF_VELOCITY_PPS = (VARIATION_OF_VELOCITY_MPS * PIXEL_PER_METER)  # pixel / second, 8
 
 # ataho Event
-RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SHIFT_DOWN, SLEEP_TIMER, DASH_TIMER = range(7)
+RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SPACE_DOWN, LANDING = range(6)
 
 key_event_table = {
     (SDL_KEYDOWN, SDLK_RIGHT): RIGHT_DOWN,
     (SDL_KEYDOWN, SDLK_LEFT): LEFT_DOWN,
     (SDL_KEYUP, SDLK_RIGHT): RIGHT_UP,
     (SDL_KEYUP, SDLK_LEFT): LEFT_UP,
-    (SDL_KEYDOWN, SDLK_RSHIFT) : SHIFT_DOWN,
-    (SDL_KEYDOWN, SDLK_LSHIFT) : SHIFT_DOWN
+    (SDL_KEYDOWN, SDLK_SPACE): SPACE_DOWN
 
 }
 
-# ataho States
 
-
-class DashState:
-    def enter(ataho, event):
-        if event == SHIFT_DOWN:
-            if ataho.velocity == 1:
-                ataho.dash_speed += 5
-            elif ataho.velocity == -1:
-                ataho.dash_speed -= 5
-
-        ataho.timer = 10
-
-    def exit(ataho, event):
-        pass
-
-    def do(ataho):
-        ataho.frame = (ataho.frame + 1) % 8
-        ataho.x += ataho.dash_speed
-        ataho.x = clamp(25, ataho.x, 800 - 25)
-        ataho.timer -= 1
-        if ataho.timer == 0:
-            ataho.add_event(DASH_TIMER)
-
-    def draw(ataho):
-        if ataho.velocity == 1:
-            ataho.image.clip_draw(ataho.frame * 100, 100, 100, 100, ataho.x, ataho.y)
-        else:
-            ataho.image.clip_draw(ataho.frame * 100, 0, 100, 100, ataho.x, ataho.y)
-
-
-class SleepState:
+class JumpState:
+    @staticmethod
     def enter(ataho, event):
         ataho.frame = 0
+        ataho.velocity = JUMP_SPEED_PPS
 
+    @staticmethod
     def exit(ataho, event):
         pass
 
+    @staticmethod
     def do(ataho):
-        ataho.frame = (ataho.frame + 1) % 8
+        ataho.y += (ataho.velocity * game_framework.frame_time)
+        ataho.velocity -= VARIATION_OF_VELOCITY_PPS
+        if ataho.y <= 90:
+            ataho.add_event(LANDING)
+            ataho.y = 90
 
+    @staticmethod
     def draw(ataho):
-        if ataho.dir == 1:
-            ataho.image.clip_composite_draw(ataho.frame * 100, 300, 100, 100,
-            3.141592 / 2, '', ataho.x - 25, ataho.y - 25, 100, 100)
-        else:
-            ataho.image.clip_composite_draw(ataho.frame * 100, 200, 100, 100,
-            -3.141592 / 2, '', ataho.x + 25, ataho.y - 25, 100, 100)
+        ataho.image.clip_draw(0, 200, 80, 100, ataho.x, ataho.y)
 
 
 class IdleState:
     @staticmethod
     def enter(ataho, event):
         if event == RIGHT_DOWN:
-            ataho.velocity = 7
+            ataho.velocity = RUN_SPEED_PPS
         elif event == LEFT_DOWN:
-            ataho.velocity = -7
+            ataho.velocity = -RUN_SPEED_PPS
         elif event == RIGHT_UP:
-            ataho.velocity = -7
+            ataho.velocity = -RUN_SPEED_PPS
         elif event == LEFT_UP:
-            ataho.velocity = 7
+            ataho.velocity = RUN_SPEED_PPS
 
     @staticmethod
     def exit(ataho, event):
@@ -85,23 +70,23 @@ class IdleState:
 
     @staticmethod
     def draw(ataho):
-        if ataho.dir == 7:
-            ataho.image.clip_draw(0, 0, 80, 100, ataho.x, ataho.y)
+        if ataho.dir == RUN_SPEED_PPS:
+            ataho.image.clip_draw(0, 300, 80, 100, ataho.x, ataho.y)
         else:
-            ataho.image.clip_draw(0, 100, 80, 100, ataho.x, ataho.y)
+            ataho.image.clip_draw(0, 400, 80, 100, ataho.x, ataho.y)
 
 
 class RunState:
     @staticmethod
     def enter(ataho, event):
         if event == RIGHT_DOWN:
-            ataho.velocity = 7
+            ataho.velocity = RUN_SPEED_PPS
         elif event == LEFT_DOWN:
-            ataho.velocity = -7
+            ataho.velocity = -RUN_SPEED_PPS
         elif event == RIGHT_UP:
-            ataho.velocity = -7
+            ataho.velocity = -RUN_SPEED_PPS
         elif event == LEFT_UP:
-            ataho.velocity = 7
+            ataho.velocity = RUN_SPEED_PPS
         ataho.dir = ataho.velocity
 
     @staticmethod
@@ -111,29 +96,27 @@ class RunState:
     @staticmethod
     def do(ataho):
         ataho.frame = (ataho.frame + 1) % 5
-        ataho.timer -= 1
-        ataho.x += ataho.velocity
+        ataho.x += ataho.velocity * game_framework.frame_time
         ataho.x = clamp(25, ataho.x, 400)
 
     @staticmethod
     def draw(ataho):
-        if ataho.velocity == 7:
-            ataho.image.clip_draw(ataho.frame * 80, 0, 80, 100, ataho.x, ataho.y)
+        if ataho.velocity == RUN_SPEED_PPS:
+            ataho.image.clip_draw(ataho.frame * 80, 300, 80, 100, ataho.x, ataho.y)
         else:
-            ataho.image.clip_draw(ataho.frame * 80, 100, 80, 100, ataho.x, ataho.y)
+            ataho.image.clip_draw(ataho.frame * 80, 400, 80, 100, ataho.x, ataho.y)
 
 
 next_state_table = {
     IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState,
                RIGHT_DOWN: RunState, LEFT_DOWN: RunState,
-               SLEEP_TIMER: SleepState},
+               SPACE_DOWN: JumpState},
     RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState,
                LEFT_DOWN: IdleState, RIGHT_DOWN: IdleState,
-                SHIFT_DOWN: DashState},
-    SleepState: {LEFT_DOWN: RunState, RIGHT_DOWN:RunState,
-                 LEFT_UP: RunState, RIGHT_UP: RunState},
-    DashState: {DASH_TIMER: RunState, SHIFT_DOWN: DashState
+                SPACE_DOWN: JumpState},
+    JumpState: {LANDING: IdleState
                 }
+
 }
 
 
@@ -141,12 +124,12 @@ class Ataho:
 
     def __init__(self):
         self.x, self.y = 200, 90
-        self.image = load_image('./Resource/ataho.png')
-        self.dir = 7
+        self.image = load_image('./Resource/ataho_full.png')
+        self.dir = RUN_SPEED_PPS
         self.velocity = 0
         self.frame = 0
         self.timer = 0
-        self.dash_speed = 0
+        self.jump_count = 0
         self.event_que = []
         self.cur_state = IdleState
         self.cur_state.enter(self, None)

@@ -5,6 +5,7 @@ RIGHT_DOWN, RIGHT_UP = range(2)
 key_event_table = {
     (SDL_KEYDOWN, SDLK_RIGHT): RIGHT_DOWN,
     (SDL_KEYUP, SDLK_RIGHT): RIGHT_UP,
+
 }
 
 
