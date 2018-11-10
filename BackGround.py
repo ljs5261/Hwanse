@@ -13,9 +13,6 @@ class BackGround:
         self.x, self.y = x, 300
         self.image = load_image('./Resource/grassland.png')
 
-    def add_event(self, event):
-        self.event_que.insert(0, event)
-
     def update(self):
         if Stage1_state.ataho.cur_state == ScrollState:
             if Stage1_state.ataho.frame_count:

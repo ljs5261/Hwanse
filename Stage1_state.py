@@ -18,19 +18,19 @@ pig = None
 
 
 def enter():
-    global ataho, team_grass, team_bg, team_tree, team_wolf, pig, x_plus
+    global ataho, team_grass, team_bg, team_tree, team_wolf, pig
     ataho = Ataho()
     team_grass = [Grass(i) for i in range(400, 2800, 800)]
     team_bg = [BackGround(i) for i in range(400, 2000, 800)]
-    team_tree = [Tree() for i in range(1)]
+    team_tree = [Tree(i) for i in range(900, 1400, 250)]
     team_wolf = [Wolf() for i in range(1)]
     pig = Pig()
 
     game_world.add_objects(team_grass, 1)
     game_world.add_object(ataho, 1)
     game_world.add_objects(team_bg, 0)
-    #game_world.add_objects(team_tree, 1)
-    #game_world.add_objects(team_wolf, 1)
+    game_world.add_objects(team_tree, 1)
+    game_world.add_objects(team_wolf, 1)
     #game_world.add_object(pig, 1)
 
 
@@ -47,7 +47,7 @@ def resume():
 
 
 def handle_events():
-    global ataho
+    global ataho, pig
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
