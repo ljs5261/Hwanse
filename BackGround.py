@@ -54,8 +54,8 @@ next_state_table = {
 
 class BackGround:
 
-    def __init__(self, xpos):
-        self.x, self.y = xpos, 300
+    def __init__(self, x):
+        self.x, self.y = x, 300
         self.image = load_image('./Resource/grassland.png')
         self.velocity = 0
         self.event_que = []

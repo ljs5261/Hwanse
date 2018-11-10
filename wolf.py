@@ -70,8 +70,8 @@ next_state_table = {
 
 class Wolf:
 
-    def __init__(self, xpos):
-        self.x, self.y = xpos, 66
+    def __init__(self):
+        self.x, self.y = 1400, 66
         self.image = load_image('./Resource/wolf1.png')
         self.frame = 0
         self.idle_velocity = 5

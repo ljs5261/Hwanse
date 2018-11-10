@@ -1,5 +1,5 @@
 from pico2d import *
-
+from Ataho import Ataho
 RIGHT_DOWN, RIGHT_UP = range(2)
 
 key_event_table = {
@@ -7,6 +7,7 @@ key_event_table = {
     (SDL_KEYUP, SDLK_RIGHT): RIGHT_UP,
 
 }
+
 
 
 class IdleState:
@@ -55,8 +56,8 @@ next_state_table = {
 
 class Tree:
 
-    def __init__(self, xpos):
-        self.x, self.y = xpos, 145
+    def __init__(self):
+        self.x, self.y = 1200, 145
         self.image = load_image('./Resource/tree.png')
         self.velocity = 0
         self.event_que = []
@@ -67,8 +68,8 @@ class Tree:
         self.event_que.insert(0, event)
 
     def update(self, at):
-        if at.x == 400:
-            self.cur_state.do(self)
+
+        self.cur_state.do(self)
         if len(self.event_que) > 0:
             event = self.event_que.pop()
             self.cur_state.exit(self, event)         # 가장 오래된 이벤트에 의해 현재 상태를 나가고
@@ -77,8 +78,3 @@ class Tree:
 
     def draw(self):
         self.cur_state.draw(self)
-
-    def handle_event(self, event):
-        if (event.type, event.key) in key_event_table:
-            key_event = key_event_table[(event.type, event.key)]
-            self.add_event(key_event)
