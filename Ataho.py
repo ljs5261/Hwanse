@@ -44,10 +44,8 @@ class ScrollState:
     def do(ataho):
         if ataho.frame_count:
             ataho.frame = (ataho.frame + 1) % 5
-            return ataho.frame_count
         else:
             ataho.frame = 0
-            return ataho.frame_count
 
     @staticmethod
     def draw(ataho):
@@ -188,7 +186,6 @@ class Ataho:
         self.frame = 0
         self.timer = 0
         self.x_move = 0
-        self.former_state_jump = 0
         self.frame_count = None
         self.event_que = []
         self.cur_state = IdleState
@@ -216,9 +213,3 @@ class Ataho:
         if (event.type, event.key) in key_event_table:
             key_event = key_event_table[(event.type, event.key)]
             self.add_event(key_event)
-
-    def determine_scroll(self, right_on_off):
-        if right_on_off:
-            return True
-        else:
-            return False

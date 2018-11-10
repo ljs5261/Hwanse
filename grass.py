@@ -1,6 +1,7 @@
 from pico2d import *
-import Stage1_state_new
+import Stage1_state
 from Ataho import ScrollState
+import game_framework
 
 PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter
 RUN_SPEED_MPS = 1.5                 # meter / second
@@ -16,8 +17,11 @@ class Grass:
         self.event_que.insert(0, event)
 
     def update(self):
-        if Stage1_state_new.ataho.cur_state == ScrollState:
-            self.x -= RUN_SPEED_PPS / 3
+        if Stage1_state.ataho.cur_state == ScrollState:
+            if Stage1_state.ataho.frame_count:
+                self.x -= (RUN_SPEED_PPS * game_framework.frame_time)
+            else:
+                pass
         else:
             pass
 
