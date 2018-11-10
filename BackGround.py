@@ -65,9 +65,8 @@ class BackGround:
     def add_event(self, event):
         self.event_que.insert(0, event)
 
-    def update(self, at):
-        if at.x == 400:
-            self.cur_state.do(self)
+    def update(self):
+        self.cur_state.do(self)
         if len(self.event_que) > 0:
             event = self.event_que.pop()
             self.cur_state.exit(self, event)         # 가장 오래된 이벤트에 의해 현재 상태를 나가고

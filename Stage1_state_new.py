@@ -29,7 +29,7 @@ def enter():
 
     game_world.add_object(ataho, 1)
     game_world.add_objects(team_grass, 1)
-    #game_world.add_objects(team_bg, 1)
+    game_world.add_objects(team_bg, 0)
     #game_world.add_objects(team_tree, 1)
     #game_world.add_objects(team_wolf, 1)
     #game_world.add_object(pig, 1)
@@ -61,18 +61,15 @@ def handle_events():
 
 
 def update():
-    global team_grass, ataho
-    ataho.update()
-    for grass in team_grass:
-        grass.update()
+    for game_object in game_world.all_objects():
+        game_object.update()
     delay(0.08)
 
 
 def draw():
-    global team_grass, ataho
-    ataho.draw()
-    for grass in team_grass:
-        grass.draw()
+    clear_canvas()
+    for game_object in game_world.all_objects():
+        game_object.draw()
     update_canvas()
 
 
