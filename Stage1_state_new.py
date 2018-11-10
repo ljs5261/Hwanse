@@ -21,14 +21,14 @@ x_plus = 400
 def enter():
     global ataho, team_grass, team_bg, team_tree, team_wolf, pig, x_plus
     ataho = Ataho()
-    team_grass = [Grass(i) for i in range(400, 2000, 800)]
+    team_grass = [Grass(i) for i in range(400, 2800, 800)]
     team_bg = [BackGround(i) for i in range(400, 2000, 800)]
     team_tree = [Tree() for i in range(1)]
     team_wolf = [Wolf() for i in range(1)]
     pig = Pig()
 
-    game_world.add_object(ataho, 1)
     game_world.add_objects(team_grass, 1)
+    game_world.add_object(ataho, 1)
     game_world.add_objects(team_bg, 0)
     #game_world.add_objects(team_tree, 1)
     #game_world.add_objects(team_wolf, 1)
