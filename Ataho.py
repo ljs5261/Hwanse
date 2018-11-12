@@ -1,5 +1,7 @@
 from pico2d import *
 import game_framework
+from energy_pa import EnergyPa
+import game_world
 
 # ataho run speed
 # 100pixel = 2m
@@ -15,7 +17,7 @@ VARIATION_OF_VELOCITY_PPS = (VARIATION_OF_VELOCITY_MPS * PIXEL_PER_METER)  # pix
 
 
 # ataho Event
-RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SPACE_DOWN, LANDING, ENTER_SCROLL_STATE = range(7)
+RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SPACE_DOWN, A, LANDING, ENTER_SCROLL_STATE = range(8)
 
 key_event_table = {
     (SDL_KEYDOWN, SDLK_RIGHT): RIGHT_DOWN,
@@ -23,6 +25,7 @@ key_event_table = {
     (SDL_KEYUP, SDLK_RIGHT): RIGHT_UP,
     (SDL_KEYUP, SDLK_LEFT): LEFT_UP,
     (SDL_KEYDOWN, SDLK_SPACE): SPACE_DOWN,
+    (SDL_KEYDOWN, SDLK_a): A
 
 }
 
@@ -38,7 +41,8 @@ class ScrollState:
 
     @staticmethod
     def exit(ataho, event):
-        pass
+        if event == A:
+            ataho.shoot_energy_pa()
 
     @staticmethod
     def do(ataho):
@@ -77,7 +81,8 @@ class JumpState:
 
     @staticmethod
     def exit(ataho, event):
-        pass
+        if event == A:
+            ataho.shoot_energy_pa()
 
     @staticmethod
     def do(ataho):
@@ -112,7 +117,8 @@ class IdleState:
 
     @staticmethod
     def exit(ataho, event):
-        pass
+        if event == A:
+            ataho.shoot_energy_pa()
 
     @staticmethod
     def do(ataho):
@@ -142,7 +148,8 @@ class RunState:
 
     @staticmethod
     def exit(ataho, event):
-        pass
+        if event == A:
+            ataho.shoot_energy_pa()
 
     @staticmethod
     def do(ataho):
@@ -163,15 +170,17 @@ class RunState:
 next_state_table = {
     IdleState: {RIGHT_UP: IdleState, LEFT_UP: IdleState,
                RIGHT_DOWN: RunState, LEFT_DOWN: RunState,
-               SPACE_DOWN: JumpState},
+               SPACE_DOWN: JumpState, A: IdleState, LANDING: IdleState},
     RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState,
                RIGHT_DOWN: IdleState, LEFT_DOWN: IdleState,
-                SPACE_DOWN: JumpState, ENTER_SCROLL_STATE: ScrollState},
+                SPACE_DOWN: JumpState, ENTER_SCROLL_STATE: ScrollState,
+               LANDING: RunState, A: RunState},
     JumpState: {RIGHT_UP: JumpState, LEFT_UP: JumpState,
                RIGHT_DOWN: JumpState, LEFT_DOWN: JumpState,
-                SPACE_DOWN: JumpState, LANDING: IdleState},
+                SPACE_DOWN: JumpState, LANDING: IdleState, A: JumpState},
     ScrollState: {RIGHT_UP: ScrollState, RIGHT_DOWN: ScrollState,
-                  LEFT_DOWN: RunState, SPACE_DOWN: JumpState}
+                  LEFT_DOWN: RunState, SPACE_DOWN: JumpState, A: ScrollState,
+                  LANDING: ScrollState}
 
 }
 
@@ -213,3 +222,10 @@ class Ataho:
         if (event.type, event.key) in key_event_table:
             key_event = key_event_table[(event.type, event.key)]
             self.add_event(key_event)
+
+    def shoot_energy_pa(self):
+        energy_pa = EnergyPa(self.x, self.y)
+        game_world.add_object(energy_pa, 1)
+
+
+
