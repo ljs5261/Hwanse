@@ -1,6 +1,6 @@
 from pico2d import *
 import Stage1_state
-from Ataho import ScrollState
+#from Ataho import ScrollState
 import game_framework
 
 PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter
@@ -70,16 +70,22 @@ class Wolf:
         self.move_count = 0
         self.cur_state = IdleState
         self.dir = 0
+        self.scroll_toggle = None
+
+    def draw(self):
+        self.cur_state.draw(self)
 
     def update(self):
         self.cur_state.do(self)
-        if Stage1_state.ataho.cur_state == ScrollState:
-            if Stage1_state.ataho.frame_count:
+        if Stage1_state.ataho.scroll_toggle:
+            if self.scroll_toggle:
                 self.cur_state = WolfScrollState
             else:
                 self.cur_state = IdleState
         else:
             self.cur_state = IdleState
 
-    def draw(self):
-        self.cur_state.draw(self)
+    def handle_event(self, event):
+        if event.type == SDL_KEYDOWN:
+            if event.key == SDLK_RIGHT:
+                self.scroll_toggle = True

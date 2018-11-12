@@ -54,7 +54,7 @@ def resume():
 
 
 def handle_events():
-    global ataho, pig
+    global ataho, pig, team_grass, team_bg, team_tree, team_wolf, team_thorn_one, team_thorn_two
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -64,6 +64,18 @@ def handle_events():
         else:
             ataho.handle_event(event)
             pig.handle_event(event)
+            for grass in team_grass:
+                grass.handle_event(event)
+            for bg in team_bg:
+                bg.handle_event(event)
+            for tree in team_tree:
+                tree.handle_event(event)
+            for wolf in team_wolf:
+                wolf.handle_event(event)
+            for thorn in team_thorn_one:
+                thorn.handle_event(event)
+            for thorn in team_thorn_two:
+                thorn.handle_event(event)
 
 
 def update():

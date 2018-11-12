@@ -3,10 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="98de0ecf-7929-49d2-a060-e2f190ff2b88" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/Ataho.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ataho.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resource/animation_sheet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resource/run_animation.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resource/thorn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resource/thorn.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackGround.py" beforeDir="false" afterPath="$PROJECT_DIR$/BackGround.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Stage1_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/Stage1_state.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grass.py" beforeDir="false" afterPath="$PROJECT_DIR$/grass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/thorn.py" beforeDir="false" afterPath="$PROJECT_DIR$/thorn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/tree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wolf.py" beforeDir="false" afterPath="$PROJECT_DIR$/wolf.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,13 +48,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="72" />
-          <entry key="py" value="16600" />
+          <entry key="py" value="17623" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="72" />
-          <entry key="Python" value="16600" />
+          <entry key="Python" value="17623" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -63,35 +65,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Stage1_state.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="136">
+              <caret line="71" selection-start-line="71" selection-end-line="71" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
-                <marker date="1542023039191" expanded="true" signature="1192:1218" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BackGround.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#20#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grass.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-              <folding>
-                <element signature="e#0#20#0" expanded="true" />
+                <marker date="1542028916769" expanded="true" signature="1192:1218" ph="..." />
               </folding>
             </state>
           </provider>
@@ -100,23 +78,44 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Ataho.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="179" column="56" lean-forward="true" selection-start-line="179" selection-start-column="56" selection-end-line="179" selection-end-column="56" />
+            <state relative-caret-position="85">
+              <caret line="168" column="15" lean-forward="true" selection-start-line="168" selection-start-column="15" selection-end-line="168" selection-end-column="15" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
-                <marker date="1542023180599" expanded="true" signature="1272:1338" ph="..." />
-                <marker date="1542023180599" expanded="true" signature="1272:1450" ph="..." />
-                <marker date="1542023180599" expanded="true" signature="3831:3896" ph="..." />
-                <marker date="1542023180599" expanded="true" signature="4579:4644" ph="..." />
-                <marker date="1542023180599" expanded="true" signature="4676:4685" ph="..." />
+                <marker date="1542028127991" expanded="true" signature="1255:1321" ph="..." />
+                <marker date="1542028127991" expanded="true" signature="1255:1832" ph="..." />
+                <marker date="1542028127991" expanded="true" signature="4778:4843" ph="..." />
+                <marker date="1542028127991" expanded="true" signature="5701:5766" ph="..." />
+                <marker date="1542028127991" expanded="true" signature="5798:5807" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Resource/ataho_full.png">
-          <provider selected="true" editor-type-id="images" />
+        <entry file="file://$PROJECT_DIR$/BackGround.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="16" column="19" lean-forward="true" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+                <marker date="1542029131607" expanded="true" signature="537:538" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grass.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="142">
+              <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="21" selection-end-column="16" />
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+                <marker date="1542027509794" expanded="true" signature="462:471" ph="..." />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -134,8 +133,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+            <state relative-caret-position="275">
+              <caret line="26" selection-start-line="26" selection-end-line="30" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -146,21 +145,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wolf.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="50" column="32" lean-forward="true" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
+            <state relative-caret-position="370">
+              <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
-                <marker date="1542014518175" expanded="true" signature="415:1018" ph="..." />
+                <marker date="1542028993261" expanded="true" signature="416:1019" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game_world.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
@@ -168,8 +158,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/thorn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="22" column="16" lean-forward="true" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+            <state relative-caret-position="475">
+              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -232,14 +222,14 @@
         <option value="$PROJECT_DIR$/Stage1_state_new.py" />
         <option value="$PROJECT_DIR$/Stage1_Class.py" />
         <option value="$PROJECT_DIR$/advanced_pause_state.py" />
+        <option value="$PROJECT_DIR$/energy_pa.py" />
         <option value="$PROJECT_DIR$/grass.py" />
-        <option value="$PROJECT_DIR$/BackGround.py" />
+        <option value="$PROJECT_DIR$/Ataho.py" />
+        <option value="$PROJECT_DIR$/Stage1_state.py" />
         <option value="$PROJECT_DIR$/tree.py" />
         <option value="$PROJECT_DIR$/wolf.py" />
-        <option value="$PROJECT_DIR$/energy_pa.py" />
         <option value="$PROJECT_DIR$/thorn.py" />
-        <option value="$PROJECT_DIR$/Stage1_state.py" />
-        <option value="$PROJECT_DIR$/Ataho.py" />
+        <option value="$PROJECT_DIR$/BackGround.py" />
       </list>
     </option>
   </component>
@@ -585,16 +575,6 @@
     <entry file="file://$PROJECT_DIR$/Resource/ataho_full.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/BackGround.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/energy_pa.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -612,20 +592,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tree.py">
+    <entry file="file://$PROJECT_DIR$/grass.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+        <state relative-caret-position="142">
+          <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="21" selection-end-column="16" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
+            <marker date="1542027509794" expanded="true" signature="462:471" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grass.py">
+    <entry file="file://$PROJECT_DIR$/Stage1_state.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="136">
+          <caret line="71" selection-start-line="71" selection-end-line="71" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+            <marker date="1542028916769" expanded="true" signature="1192:1218" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="26" selection-start-line="26" selection-end-line="30" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
@@ -634,47 +626,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wolf.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="50" column="32" lean-forward="true" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
+        <state relative-caret-position="370">
+          <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
-            <marker date="1542014518175" expanded="true" signature="415:1018" ph="..." />
+            <marker date="1542028993261" expanded="true" signature="416:1019" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/thorn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" column="16" lean-forward="true" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+        <state relative-caret-position="475">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Stage1_state.py">
+    <entry file="file://$PROJECT_DIR$/BackGround.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="304">
+          <caret line="16" column="19" lean-forward="true" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
-            <marker date="1542023039191" expanded="true" signature="1192:1218" ph="..." />
+            <marker date="1542029131607" expanded="true" signature="537:538" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Ataho.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="179" column="56" lean-forward="true" selection-start-line="179" selection-start-column="56" selection-end-line="179" selection-end-column="56" />
+        <state relative-caret-position="85">
+          <caret line="168" column="15" lean-forward="true" selection-start-line="168" selection-start-column="15" selection-end-line="168" selection-end-column="15" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
-            <marker date="1542023180599" expanded="true" signature="1272:1338" ph="..." />
-            <marker date="1542023180599" expanded="true" signature="1272:1450" ph="..." />
-            <marker date="1542023180599" expanded="true" signature="3831:3896" ph="..." />
-            <marker date="1542023180599" expanded="true" signature="4579:4644" ph="..." />
-            <marker date="1542023180599" expanded="true" signature="4676:4685" ph="..." />
+            <marker date="1542028127991" expanded="true" signature="1255:1321" ph="..." />
+            <marker date="1542028127991" expanded="true" signature="1255:1832" ph="..." />
+            <marker date="1542028127991" expanded="true" signature="4778:4843" ph="..." />
+            <marker date="1542028127991" expanded="true" signature="5701:5766" ph="..." />
+            <marker date="1542028127991" expanded="true" signature="5798:5807" ph="..." />
           </folding>
         </state>
       </provider>
