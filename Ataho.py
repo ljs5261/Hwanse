@@ -190,7 +190,8 @@ next_state_table = {
                 SPACE_DOWN: JumpState, LANDING: IdleState, A: JumpState,
                 ENTER_SCROLL_STATE: ScrollState},
     ScrollState: {RIGHT_UP: ScrollState, RIGHT_DOWN: ScrollState,
-                  LEFT_DOWN: RunState, SPACE_DOWN: JumpState, A: ScrollState,
+                  LEFT_DOWN: RunState, LEFT_UP: ScrollState,
+                  SPACE_DOWN: JumpState, A: ScrollState,
                   LANDING: ScrollState, ENTER_SCROLL_STATE: ScrollState}
 
 }

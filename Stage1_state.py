@@ -7,6 +7,7 @@ from grass import Grass
 from BackGround import BackGround
 from tree import Tree
 from wolf import Wolf
+from thorn import Thorn
 from pig import Pig
 
 ataho = None
@@ -14,16 +15,20 @@ team_grass = []
 team_bg = []
 team_tree = []
 team_wolf = []
+team_thorn_one = []
+team_thorn_two = []
 pig = None
 
 
 def enter():
-    global ataho, team_grass, team_bg, team_tree, team_wolf, pig
+    global ataho, team_grass, team_bg, team_tree, team_wolf, team_thorn_one, team_thorn_two, pig
     ataho = Ataho()
-    team_grass = [Grass(i) for i in range(400, 2800, 800)]
-    team_bg = [BackGround(i) for i in range(400, 2000, 800)]
+    team_grass = [Grass(i) for i in range(400, 3600, 800)]
+    team_bg = [BackGround(i) for i in range(400, 2800, 800)]
     team_tree = [Tree(i) for i in range(900, 1400, 250)]
     team_wolf = [Wolf() for i in range(1)]
+    team_thorn_one = [Thorn(i) for i in range(1600, 1800, 100)]
+    team_thorn_two = [Thorn(i) for i in range(2000, 2200, 100)]
     pig = Pig()
 
     game_world.add_objects(team_grass, 1)
@@ -31,6 +36,8 @@ def enter():
     game_world.add_objects(team_bg, 0)
     game_world.add_objects(team_tree, 1)
     game_world.add_objects(team_wolf, 1)
+    game_world.add_objects(team_thorn_one, 1)
+    game_world.add_objects(team_thorn_two, 1)
     #game_world.add_object(pig, 1)
 
 
