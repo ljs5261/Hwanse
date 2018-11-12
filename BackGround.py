@@ -1,11 +1,10 @@
 from pico2d import *
 import Stage1_state
-#from Ataho import ScrollState
 import game_framework
 
 PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter
-RUN_SPEED_MPS = 1.5                 # meter / second
-RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER) / 2       # pixel / second, 75
+RUN_SPEED_MPS = 2.5               # meter / second
+RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER) / 2         # pixel / second, 75
 
 
 class BackGround:

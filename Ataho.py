@@ -6,14 +6,14 @@ import game_world
 # ataho run speed
 # 100pixel = 2m
 PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter
-RUN_SPEED_MPS = 1.5                 # meter / second
+RUN_SPEED_MPS = 2.5                 # meter / second
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)       # pixel / second, 75
-JUMP_YSPEED_PPS = 9 * (RUN_SPEED_MPS * PIXEL_PER_METER)  # pixel / second, 150
-JUMP_XSPEED_PPS = 2 * (RUN_SPEED_MPS * PIXEL_PER_METER)  # pixel / second, 150
+JUMP_YSPEED_PPS = 5 * RUN_SPEED_PPS  # pixel / second
+JUMP_XSPEED_PPS = RUN_SPEED_PPS  # pixel / second
 ACCELERATION_OF_GRAVITY = 10.0     # meter / second * second
 FRAME_TIME = 0.16
-VARIATION_OF_VELOCITY_MPS = (ACCELERATION_OF_GRAVITY * FRAME_TIME)  # meter / second, 0.16
-VARIATION_OF_VELOCITY_PPS = (VARIATION_OF_VELOCITY_MPS * PIXEL_PER_METER)  # pixel / second, 8
+VARIATION_OF_VELOCITY_MPS = (ACCELERATION_OF_GRAVITY * FRAME_TIME)  # meter / second, 1.6
+VARIATION_OF_VELOCITY_PPS = (VARIATION_OF_VELOCITY_MPS * PIXEL_PER_METER)  # pixel / second, 80
 
 # ataho Action Speed
 TIME_PER_ACTION = 0.7
@@ -33,53 +33,6 @@ key_event_table = {
 
 }
 
-'''
-class ScrollState:
-    @staticmethod
-    def enter(ataho, event):
-        ataho.frame_count = True
-        if event == RIGHT_DOWN:
-            if ataho.scroll_jump:
-                ataho.scroll_toggle = True
-            else:
-                ataho.frame_count = True
-                ataho.scroll_toggle = True
-        elif event == RIGHT_UP:
-            ataho.frame_count = False
-            ataho.scroll_toggle = False
-        elif event == SPACE_DOWN:
-            ataho.scroll_jump = True
-            if ataho.y == 90:
-                ataho.velocity = JUMP_YSPEED_PPS
-
-            else:
-                ataho.velocity = ataho.velocity
-
-    @staticmethod
-    def exit(ataho, event):
-        if event == A:
-            ataho.shoot_energy_pa()
-
-    @staticmethod
-    def do(ataho):
-        if ataho.frame_count:
-            ataho.frame = (ataho.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 5
-        else:
-            ataho.frame = 0
-        if ataho.scroll_jump:
-            ataho.y += (ataho.velocity * game_framework.frame_time)
-            ataho.velocity -= VARIATION_OF_VELOCITY_PPS
-            if ataho.y <= 90:
-                ataho.y = 90
-                ataho.scroll_jump = False
-
-    @staticmethod
-    def draw(ataho):
-        if ataho.scroll_jump:
-            ataho.image.clip_draw(0, 200, 80, 100, ataho.x, ataho.y)
-        else:
-            ataho.image.clip_draw(int(ataho.frame) * 80, 300, 80, 100, ataho.x, ataho.y)
-'''
 
 class JumpState:
     @staticmethod
@@ -120,11 +73,7 @@ class JumpState:
         ataho.velocity -= VARIATION_OF_VELOCITY_PPS
         if ataho.y <= 90:
             ataho.y = 90
-            ataho.add_event(LANDING)                             #       if ataho.x < 400:
-
-    #        else:
-   #             ataho.add_event(ENTER_SCROLL_STATE)
-
+            ataho.add_event(LANDING)
         ataho.x = clamp(25, ataho.x, 400)
 
     @staticmethod
@@ -170,6 +119,7 @@ class RunState:
     @staticmethod
     def enter(ataho, event):
         if event == RIGHT_DOWN:
+            ataho.dir = 1
             if ataho.x == 400:
                 ataho.velocity = 0
                 ataho.scroll_toggle = True
@@ -178,12 +128,11 @@ class RunState:
                 ataho.scroll_toggle = False
         elif event == LEFT_DOWN:
             ataho.velocity = -RUN_SPEED_PPS
+            ataho.dir = -1
         elif event == RIGHT_UP:
             pass
         elif event == LEFT_UP:
             pass
-
-        ataho.dir = clamp(-1, ataho.velocity, 1)
 
     @staticmethod
     def exit(ataho, event):
@@ -201,9 +150,6 @@ class RunState:
         else:
             ataho.scroll_toggle = False
 
-      #  if ataho.x == 400:
-       #     ataho.add_event(ENTER_SCROLL_STATE)
-
     @staticmethod
     def draw(ataho):
         if ataho.dir == 1:
@@ -216,19 +162,12 @@ next_state_table = {
     IdleState: {RIGHT_UP: IdleState, LEFT_UP: IdleState,
                RIGHT_DOWN: RunState, LEFT_DOWN: RunState,
                SPACE_DOWN: JumpState, A: IdleState, LANDING: IdleState},
-             #   ENTER_SCROLL_STATE: IdleState},
     RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState,
                RIGHT_DOWN: IdleState, LEFT_DOWN: IdleState,
-                SPACE_DOWN: JumpState, #ENTER_SCROLL_STATE: ScrollState,
-               LANDING: RunState, A: RunState},
+                SPACE_DOWN: JumpState, LANDING: RunState, A: RunState},
     JumpState: {RIGHT_UP: JumpState, LEFT_UP: JumpState,
                RIGHT_DOWN: JumpState, LEFT_DOWN: JumpState,
                 SPACE_DOWN: JumpState, LANDING: IdleState, A: JumpState}
-         #       ENTER_SCROLL_STATE: ScrollState},
-    #ScrollState: {RIGHT_UP: ScrollState, RIGHT_DOWN: ScrollState,
-     #             LEFT_DOWN: RunState, LEFT_UP: ScrollState,
-      #            SPACE_DOWN: ScrollState, A: ScrollState,
-       #           LANDING: ScrollState, ENTER_SCROLL_STATE: ScrollState}
 
 }
 
@@ -243,13 +182,10 @@ class Ataho:
         self.frame = 0
         self.timer = 0
         self.x_move = 0
-        self.frame_count = None
-        self.scroll_jump = None
         self.scroll_toggle = None
         self.event_que = []
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
-        self.frame_control = 0
 
     def add_event(self, event):
         self.event_que.insert(0, event)

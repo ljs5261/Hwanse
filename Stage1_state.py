@@ -23,12 +23,12 @@ pig = None
 def enter():
     global ataho, team_grass, team_bg, team_tree, team_wolf, team_thorn_one, team_thorn_two, pig
     ataho = Ataho()
-    team_grass = [Grass(i) for i in range(400, 3600, 800)]
+    team_grass = [Grass(i) for i in range(400, 4400, 800)]
     team_bg = [BackGround(i) for i in range(400, 2800, 800)]
     team_tree = [Tree(i) for i in range(900, 1400, 250)]
     team_wolf = [Wolf() for i in range(1)]
-    team_thorn_one = [Thorn(i) for i in range(1600, 1800, 100)]
-    team_thorn_two = [Thorn(i) for i in range(2000, 2200, 100)]
+    team_thorn_one = [Thorn(i) for i in range(1600, 1720, 60)]
+    team_thorn_two = [Thorn(i) for i in range(2000, 2120, 60)]
     pig = Pig()
 
     game_world.add_objects(team_grass, 1)

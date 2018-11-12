@@ -3,8 +3,8 @@ import game_framework
 import game_world
 
 PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter
-RUN_SPEED_MPS = 1.5                 # meter / second
-RUN_SPEED_PPS = 2.5 * (RUN_SPEED_MPS * PIXEL_PER_METER)       # pixel / second, 75
+RUN_SPEED_MPS = 4                 # meter / second
+RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)       # pixel / second
 
 TIME_PER_ACTION = 0.5
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
