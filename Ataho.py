@@ -126,7 +126,7 @@ class IdleState:
 
     @staticmethod
     def do(ataho):
-        pass
+        ataho.y = 90
 
     @staticmethod
     def draw(ataho):
@@ -160,8 +160,10 @@ class RunState:
         ataho.frame = (ataho.frame + 1) % 5
         ataho.x += ataho.velocity * game_framework.frame_time
         ataho.x = clamp(25, ataho.x, 400)
+        ataho.y = 90
         if ataho.x == 400:
             ataho.add_event(ENTER_SCROLL_STATE)
+
 
     @staticmethod
     def draw(ataho):
@@ -174,7 +176,8 @@ class RunState:
 next_state_table = {
     IdleState: {RIGHT_UP: IdleState, LEFT_UP: IdleState,
                RIGHT_DOWN: RunState, LEFT_DOWN: RunState,
-               SPACE_DOWN: JumpState, A: IdleState, LANDING: IdleState},
+               SPACE_DOWN: JumpState, A: IdleState, LANDING: IdleState,
+                ENTER_SCROLL_STATE: IdleState},
     RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState,
                RIGHT_DOWN: IdleState, LEFT_DOWN: IdleState,
                 SPACE_DOWN: JumpState, ENTER_SCROLL_STATE: ScrollState,
@@ -229,7 +232,7 @@ class Ataho:
             self.add_event(key_event)
 
     def shoot_energy_pa(self):
-        energy_pa = EnergyPa(self.x, self.y)
+        energy_pa = EnergyPa(self.x, self.y, self.dir)
         game_world.add_object(energy_pa, 1)
 
 
