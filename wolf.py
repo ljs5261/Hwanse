@@ -7,17 +7,21 @@ PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter
 RUN_SPEED_MPS = 1.5                 # meter / second
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)       # pixel / second, 75
 
+TIME_PER_ACTION = 0.7
+ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
+FRAMES_PER_ACTION = 8
+
 
 class IdleState:
     @staticmethod
     def do(wolf):
         if wolf.move_count < 30:
-            wolf.frame = (wolf.frame + 1) % 5
+            wolf.frame = (wolf.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 5
             wolf.dir = 0
             wolf.x -= (wolf.velocity * game_framework.frame_time)
             wolf.move_count += 1
         if wolf.move_count >= 30:
-            wolf.frame = (wolf.frame + 1) % 5
+            wolf.frame = (wolf.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 5
             wolf.dir = 1
             wolf.x += (wolf.velocity * game_framework.frame_time)
             wolf.move_count += 1
@@ -27,21 +31,21 @@ class IdleState:
     @staticmethod
     def draw(wolf):
         if wolf.dir == 0:
-            wolf.image.clip_draw(wolf.frame * 64, 0, 64, 40, wolf.x, wolf.y)
+            wolf.image.clip_draw(int(wolf.frame) * 64, 0, 64, 40, wolf.x, wolf.y)
         else:
-            wolf.image.clip_draw(wolf.frame * 64, 40, 64, 40, wolf.x, wolf.y)
+            wolf.image.clip_draw(int(wolf.frame) * 64, 40, 64, 40, wolf.x, wolf.y)
 
 
 class WolfScrollState:
     @staticmethod
     def do(wolf):
         if wolf.move_count < 30:
-            wolf.frame = (wolf.frame + 1) % 5
+            wolf.frame = (wolf.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 5
             wolf.dir = 0
             wolf.x -= 2 * (wolf.velocity * game_framework.frame_time)
             wolf.move_count += 1
         if wolf.move_count >= 30:
-            wolf.frame = (wolf.frame + 1) % 5
+            wolf.frame = (wolf.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 5
             wolf.dir = 1
             wolf.x += 0
             wolf.move_count += 1
@@ -51,9 +55,9 @@ class WolfScrollState:
     @staticmethod
     def draw(wolf):
         if wolf.dir == 0:
-            wolf.image.clip_draw(wolf.frame * 64, 0, 64, 40, wolf.x, wolf.y)
+            wolf.image.clip_draw(int(wolf.frame) * 64, 0, 64, 40, wolf.x, wolf.y)
         else:
-            wolf.image.clip_draw(wolf.frame * 64, 40, 64, 40, wolf.x, wolf.y)
+            wolf.image.clip_draw(int(wolf.frame) * 64, 40, 64, 40, wolf.x, wolf.y)
 
 
 class Wolf:

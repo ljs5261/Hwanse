@@ -15,6 +15,10 @@ FRAME_TIME = 0.16
 VARIATION_OF_VELOCITY_MPS = (ACCELERATION_OF_GRAVITY * FRAME_TIME)  # meter / second, 0.16
 VARIATION_OF_VELOCITY_PPS = (VARIATION_OF_VELOCITY_MPS * PIXEL_PER_METER)  # pixel / second, 8
 
+# ataho Action Speed
+TIME_PER_ACTION = 0.7
+ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
+FRAMES_PER_ACTION = 8
 
 # ataho Event
 RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SPACE_DOWN, A, LANDING, ENTER_SCROLL_STATE = range(8)
@@ -47,16 +51,16 @@ class ScrollState:
     @staticmethod
     def do(ataho):
         if ataho.frame_count:
-            ataho.frame = (ataho.frame + 1) % 5
+            ataho.frame = (ataho.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 5
         else:
             ataho.frame = 0
 
     @staticmethod
     def draw(ataho):
         if ataho.dir == 1:
-            ataho.image.clip_draw(ataho.frame * 80, 300, 80, 100, ataho.x, ataho.y)
+            ataho.image.clip_draw(int(ataho.frame) * 80, 300, 80, 100, ataho.x, ataho.y)
         else:
-            ataho.image.clip_draw(ataho.frame * 80, 400, 80, 100, ataho.x, ataho.y)
+            ataho.image.clip_draw(int(ataho.frame) * 80, 400, 80, 100, ataho.x, ataho.y)
 
 
 class JumpState:
@@ -157,20 +161,19 @@ class RunState:
 
     @staticmethod
     def do(ataho):
-        ataho.frame = (ataho.frame + 1) % 5
+        ataho.frame = (ataho.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 5
         ataho.x += ataho.velocity * game_framework.frame_time
         ataho.x = clamp(25, ataho.x, 400)
         ataho.y = 90
         if ataho.x == 400:
             ataho.add_event(ENTER_SCROLL_STATE)
 
-
     @staticmethod
     def draw(ataho):
         if ataho.dir == 1:
-            ataho.image.clip_draw(ataho.frame * 80, 300, 80, 100, ataho.x, ataho.y)
+            ataho.image.clip_draw(int(ataho.frame) * 80, 300, 80, 100, ataho.x, ataho.y)
         else:
-            ataho.image.clip_draw(ataho.frame * 80, 400, 80, 100, ataho.x, ataho.y)
+            ataho.image.clip_draw(int(ataho.frame) * 80, 400, 80, 100, ataho.x, ataho.y)
 
 
 next_state_table = {
