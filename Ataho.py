@@ -91,8 +91,12 @@ class JumpState:
         ataho.velocity -= VARIATION_OF_VELOCITY_PPS
         if ataho.y <= 90:
             ataho.y = 90
-            ataho.add_event(LANDING)
-        ataho.x = clamp(25, ataho.x, 399)
+            if ataho.x < 400:
+                ataho.add_event(LANDING)
+            else:
+                ataho.add_event(ENTER_SCROLL_STATE)
+
+        ataho.x = clamp(25, ataho.x, 400)
 
     @staticmethod
     def draw(ataho):
@@ -177,10 +181,11 @@ next_state_table = {
                LANDING: RunState, A: RunState},
     JumpState: {RIGHT_UP: JumpState, LEFT_UP: JumpState,
                RIGHT_DOWN: JumpState, LEFT_DOWN: JumpState,
-                SPACE_DOWN: JumpState, LANDING: IdleState, A: JumpState},
+                SPACE_DOWN: JumpState, LANDING: IdleState, A: JumpState,
+                ENTER_SCROLL_STATE: ScrollState},
     ScrollState: {RIGHT_UP: ScrollState, RIGHT_DOWN: ScrollState,
                   LEFT_DOWN: RunState, SPACE_DOWN: JumpState, A: ScrollState,
-                  LANDING: ScrollState}
+                  LANDING: ScrollState, ENTER_SCROLL_STATE: ScrollState}
 
 }
 

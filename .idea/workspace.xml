@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98de0ecf-7929-49d2-a060-e2f190ff2b88" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ataho.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ataho.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resource/JangPung.png" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,13 +43,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="72" />
-          <entry key="py" value="16154" />
+          <entry key="py" value="16264" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="72" />
-          <entry key="Python" value="16154" />
+          <entry key="Python" value="16264" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -97,15 +97,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Ataho.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="184" column="1" selection-start-line="184" selection-start-column="1" selection-end-line="184" selection-end-column="1" />
+            <state relative-caret-position="285">
+              <caret line="189" column="1" lean-forward="true" selection-start-line="189" selection-start-column="1" selection-end-line="189" selection-end-column="1" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
-                <marker date="1542010959987" expanded="true" signature="1167:1233" ph="..." />
-                <marker date="1542010959987" expanded="true" signature="1167:1345" ph="..." />
-                <marker date="1542010959987" expanded="true" signature="3549:3614" ph="..." />
-                <marker date="1542010959987" expanded="true" signature="4289:4354" ph="..." />
-                <marker date="1542010959987" expanded="true" signature="4386:4395" ph="..." />
+                <marker date="1542011946891" expanded="true" signature="1167:1233" ph="..." />
+                <marker date="1542011946891" expanded="true" signature="1167:1345" ph="..." />
+                <marker date="1542011946891" expanded="true" signature="3654:3719" ph="..." />
+                <marker date="1542011946891" expanded="true" signature="4394:4459" ph="..." />
+                <marker date="1542011946891" expanded="true" signature="4491:4500" ph="..." />
               </folding>
             </state>
           </provider>
@@ -411,6 +411,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1764706" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -634,15 +635,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Ataho.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="184" column="1" selection-start-line="184" selection-start-column="1" selection-end-line="184" selection-end-column="1" />
+        <state relative-caret-position="285">
+          <caret line="189" column="1" lean-forward="true" selection-start-line="189" selection-start-column="1" selection-end-line="189" selection-end-column="1" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
-            <marker date="1542010959987" expanded="true" signature="1167:1233" ph="..." />
-            <marker date="1542010959987" expanded="true" signature="1167:1345" ph="..." />
-            <marker date="1542010959987" expanded="true" signature="3549:3614" ph="..." />
-            <marker date="1542010959987" expanded="true" signature="4289:4354" ph="..." />
-            <marker date="1542010959987" expanded="true" signature="4386:4395" ph="..." />
+            <marker date="1542011946891" expanded="true" signature="1167:1233" ph="..." />
+            <marker date="1542011946891" expanded="true" signature="1167:1345" ph="..." />
+            <marker date="1542011946891" expanded="true" signature="3654:3719" ph="..." />
+            <marker date="1542011946891" expanded="true" signature="4394:4459" ph="..." />
+            <marker date="1542011946891" expanded="true" signature="4491:4500" ph="..." />
           </folding>
         </state>
       </provider>
