@@ -8,7 +8,7 @@ import game_world
 PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter
 RUN_SPEED_MPS = 2.5                # meter / second
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)       # pixel / second, 75
-JUMP_YSPEED_PPS = 5 * RUN_SPEED_PPS  # pixel / second
+JUMP_YSPEED_PPS = 6 * RUN_SPEED_PPS  # pixel / second
 JUMP_XSPEED_PPS = RUN_SPEED_PPS  # pixel / second
 ACCELERATION_OF_GRAVITY = 7.0     # meter / second * second
 FRAME_TIME = 0.16
@@ -75,6 +75,10 @@ class JumpState:
             ataho.y = 90
             ataho.add_event(LANDING)
         ataho.x = clamp(25, ataho.x, 400)
+        if ataho.x == 400:
+            ataho.scroll_toggle = True
+        else:
+            ataho.scroll_toggle = False
 
     @staticmethod
     def draw(ataho):
@@ -183,6 +187,7 @@ class Ataho:
         self.timer = 0
         self.x_move = 0
         self.scroll_toggle = None
+        self.landing_count = 0
         self.event_que = []
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
@@ -220,7 +225,10 @@ class Ataho:
     def stop(self, object):
         at_x1, at_y1, at_x2, at_y2 = self.get_bb()
         x1, y1, x2, y2 = object.get_bb()
-        if at_x2 > x1:
+        if x1 < at_x2 < x1 + 20:
             self.x = self.x - 10
-
-
+        elif x2 - 20 < at_x1 < x2:
+            self.x = self.x + 10
+        if at_y1 < y2 and x1 < at_x1 < x2:
+            self.y = 270
+            self.velocity = 0
