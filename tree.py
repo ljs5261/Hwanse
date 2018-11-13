@@ -15,6 +15,7 @@ class Tree:
 
     def draw(self):
         self.image.draw(self.x, self.y)
+        draw_rectangle(*self.get_bb())
 
     def update(self):
         if Stage1_state.ataho.scroll_toggle:
@@ -28,4 +29,5 @@ class Tree:
             if event.key == SDLK_RIGHT:
                 self.scroll_toggle = True
 
-
+    def get_bb(self):
+        return self.x - 80, self.y - 100, self.x + 80, self.y + 70

@@ -6,11 +6,11 @@ import game_world
 # ataho run speed
 # 100pixel = 2m
 PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter
-RUN_SPEED_MPS = 2.5                 # meter / second
+RUN_SPEED_MPS = 2.5                # meter / second
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)       # pixel / second, 75
 JUMP_YSPEED_PPS = 5 * RUN_SPEED_PPS  # pixel / second
 JUMP_XSPEED_PPS = RUN_SPEED_PPS  # pixel / second
-ACCELERATION_OF_GRAVITY = 10.0     # meter / second * second
+ACCELERATION_OF_GRAVITY = 7.0     # meter / second * second
 FRAME_TIME = 0.16
 VARIATION_OF_VELOCITY_MPS = (ACCELERATION_OF_GRAVITY * FRAME_TIME)  # meter / second, 1.6
 VARIATION_OF_VELOCITY_PPS = (VARIATION_OF_VELOCITY_MPS * PIXEL_PER_METER)  # pixel / second, 80
@@ -203,6 +203,7 @@ class Ataho:
 
     def draw(self):
         self.cur_state.draw(self)
+        draw_rectangle(*self.get_bb())
 
     def handle_event(self, event):
         if (event.type, event.key) in key_event_table:
@@ -213,5 +214,13 @@ class Ataho:
         energy_pa = EnergyPa(self.x, self.y, self.dir)
         game_world.add_object(energy_pa, 1)
 
+    def get_bb(self):
+        return self.x - 40, self.y - 50, self.x + 20, self.y + 50
+
+    def stop(self, object):
+        at_x1, at_y1, at_x2, at_y2 = self.get_bb()
+        x1, y1, x2, y2 = object.get_bb()
+        if at_x2 > x1:
+            self.x = self.x - 10
 
 

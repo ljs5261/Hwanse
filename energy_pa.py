@@ -12,9 +12,12 @@ FRAMES_PER_ACTION = 8
 
 
 class EnergyPa:
+    image = None
+
     def __init__(self, x, y, dir):
+        if EnergyPa.image is None:
+            EnergyPa.image = load_image('./Resource/energy_pa.png')
         self.x, self.y = x, y
-        self.image = load_image('./Resource/energy_pa.png')
         self.frame = 0
         self.dir = dir
 
