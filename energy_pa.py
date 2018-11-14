@@ -38,9 +38,8 @@ class EnergyPa:
                 print("COLLISION")
                 wolf.life -= 20
                 print(wolf.life)
-
-            if wolf.life <= 0:
-                del wolf
+                if wolf.life <= 0:
+                    game_world.remove_object(wolf)
 
     def draw(self):
         self.image.clip_draw(int(self.frame) * 34, 0, 34, 42, self.x, self.y)
