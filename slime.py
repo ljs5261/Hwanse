@@ -33,6 +33,11 @@ class Slime:
         else:
             pass
 
+        if Stage1_state.collide(self, Stage1_state.ataho):
+            print("COLLISION")
+            Stage1_state.ataho.life -= 10
+            print(Stage1_state.ataho.life)
+
     def handle_event(self, event):
         if event.type == SDL_KEYDOWN:
             if event.key == SDLK_RIGHT:

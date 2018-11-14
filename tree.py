@@ -9,7 +9,7 @@ RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)       # pixel / second, 75
 
 class Tree:
     def __init__(self, x):
-        self.x, self.y = x, 145
+        self.x, self.y = x, 110
         self.image = load_image('./Resource/tree.png')
         self.scroll_toggle = None
 
@@ -44,4 +44,4 @@ class Tree:
                 self.scroll_toggle = True
 
     def get_bb(self):
-        return self.x - 80, self.y - 100, self.x + 80, self.y + 70
+        return self.x - 60, self.y - 70, self.x + 60, self.y + 55

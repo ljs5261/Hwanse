@@ -187,7 +187,7 @@ class Ataho:
         self.timer = 0
         self.x_move = 0
         self.scroll_toggle = None
-        self.life = 100
+        self.life = 400
         self.event_que = []
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
@@ -221,7 +221,3 @@ class Ataho:
 
     def get_bb(self):
         return self.x - 40, self.y - 50, self.x + 20, self.y + 50
-
-    def stop(self, object):
-        self.life -= 10
-        print(self.life)
