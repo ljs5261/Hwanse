@@ -73,6 +73,7 @@ class Wolf:
 
     def draw(self):
         self.cur_state.draw(self)
+        draw_rectangle(*self.get_bb())
 
     def update(self):
         self.cur_state.do(self)
@@ -88,3 +89,6 @@ class Wolf:
         if event.type == SDL_KEYDOWN:
             if event.key == SDLK_RIGHT:
                 self.scroll_toggle = True
+
+    def get_bb(self):
+        return self.x - 35, self.y - 25, self.x + 30, self.y + 20

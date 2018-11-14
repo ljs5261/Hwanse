@@ -33,5 +33,8 @@ class EnergyPa:
 
     def draw(self):
         self.image.clip_draw(int(self.frame) * 34, 0, 34, 42, self.x, self.y)
+        draw_rectangle(*self.get_bb())
 
+    def get_bb(self):
+        return self.x - 15, self.y - 20, self.x + 20, self.y + 15
 
