@@ -187,7 +187,7 @@ class Ataho:
         self.timer = 0
         self.x_move = 0
         self.scroll_toggle = None
-        self.landing_count = 0
+        self.life = 100
         self.event_que = []
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
@@ -223,12 +223,5 @@ class Ataho:
         return self.x - 40, self.y - 50, self.x + 20, self.y + 50
 
     def stop(self, object):
-        at_x1, at_y1, at_x2, at_y2 = self.get_bb()
-        x1, y1, x2, y2 = object.get_bb()
-        if x1 < at_x2 < x1 + 20:
-            self.x = self.x - 10
-        elif x2 - 20 < at_x1 < x2:
-            self.x = self.x + 10
-        if at_y1 < y2 and x1 < at_x1 < x2:
-            self.y = 270
-            self.velocity = 0
+        self.life -= 10
+        print(self.life)

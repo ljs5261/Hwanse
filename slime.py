@@ -1,6 +1,7 @@
 from pico2d import *
 import Stage1_state
 import game_framework
+import random
 
 PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter
 RUN_SPEED_MPS = 2.5                # meter / second
@@ -13,7 +14,8 @@ FRAMES_PER_ACTION = 8
 
 class Slime:
     def __init__(self, x):
-        self.x, self.y = x, 60
+        self.x = x
+        self.y = 60
         self.image = load_image('./Resource/slime.png')
         self.scroll_toggle = None
         self.frame = 0

@@ -100,9 +100,6 @@ def handle_events():
 def update():
     for game_object in game_world.all_objects():
         game_object.update()
-    for tree in team_tree:
-        if collide(ataho, tree):
-            ataho.stop(tree)
 
     delay(0.05)
 
