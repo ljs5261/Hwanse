@@ -10,6 +10,7 @@ from wolf import Wolf
 from thorn import Thorn
 from pig import Pig
 
+
 ataho = None
 team_grass = []
 team_bg = []
@@ -95,7 +96,6 @@ def update():
         game_object.update()
     for tree in team_tree:
         if collide(ataho, tree):
-            print("COLLISION")
             ataho.stop(tree)
 
     delay(0.05)

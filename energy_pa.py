@@ -1,6 +1,7 @@
 from pico2d import *
 import game_framework
 import game_world
+import Stage1_state
 
 PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter
 RUN_SPEED_MPS = 4                 # meter / second
@@ -30,6 +31,16 @@ class EnergyPa:
 
         if self.x < 0 or self.x > 800:
             game_world.remove_object(self)
+
+        for wolf in Stage1_state.team_wolf:
+            if Stage1_state.collide(self, wolf):
+                game_world.remove_object(self)
+                print("COLLISION")
+                wolf.life -= 20
+                print(wolf.life)
+
+            if wolf.life <= 0:
+                del wolf
 
     def draw(self):
         self.image.clip_draw(int(self.frame) * 34, 0, 34, 42, self.x, self.y)
