@@ -70,7 +70,7 @@ class Wolf:
         self.cur_state = IdleState
         self.dir = 0
         self.scroll_toggle = None
-        self.life = 100
+        self.life = 140
 
     def draw(self):
         self.cur_state.draw(self)

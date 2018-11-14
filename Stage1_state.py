@@ -8,6 +8,7 @@ from BackGround import BackGround
 from tree import Tree
 from wolf import Wolf
 from thorn import Thorn
+from slime import Slime
 from pig import Pig
 
 
@@ -18,6 +19,7 @@ team_tree = []
 team_wolf = []
 team_thorn_one = []
 team_thorn_two = []
+team_slime = []
 pig = None
 
 
@@ -34,14 +36,15 @@ def collide(a, b):
 
 
 def enter():
-    global ataho, team_grass, team_bg, team_tree, team_wolf, team_thorn_one, team_thorn_two, pig
+    global ataho, team_grass, team_bg, team_tree, team_wolf, team_thorn_one, team_thorn_two, team_slime, pig
     ataho = Ataho()
     team_grass = [Grass(i) for i in range(400, 4400, 800)]
     team_bg = [BackGround(i) for i in range(400, 2800, 800)]
-    team_tree = [Tree(i) for i in range(900, 1400, 250)]
+    team_tree = [Tree(i) for i in range(800, 1400, 300)]
     team_wolf = [Wolf() for i in range(1)]
     team_thorn_one = [Thorn(i) for i in range(1600, 1720, 60)]
     team_thorn_two = [Thorn(i) for i in range(2000, 2120, 60)]
+    team_slime = [Slime(i) for i in range(2200, 2500, 100)]
     pig = Pig()
 
     game_world.add_objects(team_grass, 1)
@@ -51,6 +54,7 @@ def enter():
     game_world.add_objects(team_wolf, 1)
     game_world.add_objects(team_thorn_one, 1)
     game_world.add_objects(team_thorn_two, 1)
+    game_world.add_objects(team_slime, 1)
     #game_world.add_object(pig, 1)
 
 
@@ -67,7 +71,7 @@ def resume():
 
 
 def handle_events():
-    global ataho, pig, team_grass, team_bg, team_tree, team_wolf, team_thorn_one, team_thorn_two
+    global ataho, pig, team_grass, team_bg, team_tree, team_wolf, team_thorn_one, team_thorn_two, team_slime
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -89,6 +93,8 @@ def handle_events():
                 thorn.handle_event(event)
             for thorn in team_thorn_two:
                 thorn.handle_event(event)
+            for slime in team_slime:
+                slime.handle_event(event)
 
 
 def update():
