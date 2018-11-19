@@ -3,7 +3,7 @@ import Stage1_state
 import game_framework
 
 PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter
-RUN_SPEED_MPS = 2.5                # meter / second
+RUN_SPEED_MPS = 3                # meter / second
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)       # pixel / second, 75
 
 

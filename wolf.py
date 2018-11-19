@@ -1,9 +1,10 @@
 from pico2d import *
 import Stage1_state
 import game_framework
+import random
 
 PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter
-RUN_SPEED_MPS = 2.5                 # meter / second
+RUN_SPEED_MPS = 3                 # meter / second
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)       # pixel / second, 75
 
 TIME_PER_ACTION = 0.7
@@ -71,6 +72,7 @@ class Wolf:
         self.dir = 0
         self.scroll_toggle = None
         self.life = 140
+        self.collision_count = 0
 
     def draw(self):
         self.cur_state.draw(self)
@@ -86,10 +88,18 @@ class Wolf:
         else:
             self.cur_state = IdleState
 
-        if Stage1_state.collide(self, Stage1_state.ataho):
-            print("COLLISION")
-            Stage1_state.ataho.life -= 15
-            print(Stage1_state.ataho.life)
+        ataho = Stage1_state.get_ataho()
+        if Stage1_state.collide(self, ataho):
+            if self.collision_count == 0:
+                ataho.flicker_toggle = True
+                self.collision_count += 1
+
+        if ataho.flicker_toggle:
+            ataho.flicker()
+            delay(0.02)
+            if ataho.flicker_count == 20:
+                ataho.filcker_toggle = False
+                self.collision_count = 0
 
     def handle_event(self, event):
         if event.type == SDL_KEYDOWN:

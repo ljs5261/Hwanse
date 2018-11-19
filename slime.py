@@ -4,7 +4,7 @@ import game_framework
 import random
 
 PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter
-RUN_SPEED_MPS = 2.5                # meter / second
+RUN_SPEED_MPS = 3                   # meter / second
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)       # pixel / second, 75
 
 TIME_PER_ACTION = 0.8

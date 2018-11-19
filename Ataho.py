@@ -6,9 +6,9 @@ import game_world
 # ataho run speed
 # 100pixel = 2m
 PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter
-RUN_SPEED_MPS = 2.5                # meter / second
+RUN_SPEED_MPS = 3              # meter / second
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)       # pixel / second, 75
-JUMP_YSPEED_PPS = 6 * RUN_SPEED_PPS  # pixel / second
+JUMP_YSPEED_PPS = 7.5 * RUN_SPEED_PPS  # pixel / second
 JUMP_XSPEED_PPS = RUN_SPEED_PPS  # pixel / second
 ACCELERATION_OF_GRAVITY = 7.0     # meter / second * second
 FRAME_TIME = 0.16
@@ -188,6 +188,8 @@ class Ataho:
         self.x_move = 0
         self.scroll_toggle = None
         self.life = 400
+        self.flicker_count = 0
+        self.flicker_toggle = None
         self.event_que = []
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
@@ -221,3 +223,13 @@ class Ataho:
 
     def get_bb(self):
         return self.x - 40, self.y - 50, self.x + 20, self.y + 50
+
+    def flicker(self):
+        if self.flicker_count % 2 == 0:
+            self.image.opacify(0.5)
+            self.flicker_count += 1
+        else:
+            self.image.opacify(1)
+            self.flicker_count += 1
+        if self.flicker_count == 20:
+            self.flicker_count = 0
