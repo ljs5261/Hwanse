@@ -90,8 +90,10 @@ class Wolf:
 
         ataho = Stage1_state.get_ataho()
         if Stage1_state.collide(self, ataho):
+            print(ataho.life)
             if self.collision_count == 0:
                 ataho.flicker_toggle = True
+                ataho.life -= 10
                 self.collision_count += 1
 
         if ataho.flicker_toggle:
@@ -99,7 +101,7 @@ class Wolf:
         else:
             pass
 
-        if ataho.flicker_count == 70:
+        if ataho.flicker_count >= 100:
             ataho.flicker_toggle = False
             self.collision_count = 0
             ataho.flicker_count = 0
