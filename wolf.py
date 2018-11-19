@@ -96,10 +96,13 @@ class Wolf:
 
         if ataho.flicker_toggle:
             ataho.flicker()
-            delay(0.02)
-            if ataho.flicker_count == 20:
-                ataho.filcker_toggle = False
-                self.collision_count = 0
+        else:
+            pass
+
+        if ataho.flicker_count == 70:
+            ataho.flicker_toggle = False
+            self.collision_count = 0
+            ataho.flicker_count = 0
 
     def handle_event(self, event):
         if event.type == SDL_KEYDOWN:

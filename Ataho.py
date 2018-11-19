@@ -231,5 +231,4 @@ class Ataho:
         else:
             self.image.opacify(1)
             self.flicker_count += 1
-        if self.flicker_count == 20:
-            self.flicker_count = 0
+
