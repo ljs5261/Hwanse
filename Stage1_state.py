@@ -11,7 +11,7 @@ from thorn import Thorn
 from slime import Slime
 from pig import Pig
 from dumpling import Dumpling
-
+from Hellgate import Hellgate
 
 ataho = None
 team_grass = []
@@ -23,6 +23,7 @@ team_thorn_two = []
 team_slime = []
 pig = None
 dumpling = None
+hell_gate = None
 
 
 def get_ataho():
@@ -43,9 +44,10 @@ def collide(a, b):
 
 def enter():
     global ataho, team_grass, team_bg, team_tree, team_wolf, team_thorn_one, team_thorn_two, team_slime, pig, dumpling
+    global hell_gate
     ataho = Ataho()
-    team_grass = [Grass(i) for i in range(400, 4400, 800)]
-    team_bg = [BackGround(i) for i in range(400, 2800, 800)]
+    team_grass = [Grass(i) for i in range(400, 7600, 800)]
+    team_bg = [BackGround(i) for i in range(400, 4200, 800)]
     team_tree = [Tree(i) for i in range(800, 1400, 300)]
     team_wolf = [Wolf() for i in range(1)]
     team_thorn_one = [Thorn(i) for i in range(1600, 1720, 60)]
@@ -53,6 +55,7 @@ def enter():
     team_slime = [Slime(i) for i in range(2200, 2500, 100)]
     pig = Pig()
     dumpling = Dumpling()
+    hell_gate = Hellgate()
 
     game_world.add_objects(team_grass, 1)
     game_world.add_object(ataho, 1)
@@ -64,6 +67,7 @@ def enter():
     game_world.add_objects(team_slime, 1)
     #game_world.add_object(pig, 1)
     game_world.add_object(dumpling, 1)
+    game_world.add_object(hell_gate, 1)
 
 
 def exit():
@@ -80,6 +84,7 @@ def resume():
 
 def handle_events():
     global ataho, pig, team_grass, team_bg, team_tree, team_wolf, team_thorn_one, team_thorn_two, team_slime, dumpling
+    global hell_gate
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -90,6 +95,7 @@ def handle_events():
             ataho.handle_event(event)
             pig.handle_event(event)
             dumpling.handle_event(event)
+            hell_gate.handle_event(event)
             for grass in team_grass:
                 grass.handle_event(event)
             for bg in team_bg:

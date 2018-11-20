@@ -2,6 +2,7 @@ from pico2d import *
 import game_framework
 from energy_pa import EnergyPa
 import game_world
+import Stage1_state
 
 # ataho run speed
 # 100pixel = 2m
@@ -207,6 +208,10 @@ class Ataho:
             self.cur_state = next_state_table[self.cur_state][event]  # 그 이벤트에 의해 다음 상태로 변화
             self.cur_state.enter(self, event)       # 다음 상태로 들어간다
             print(self.cur_state)
+
+        if Stage1_state.collide(self, Stage1_state.team_bg[-1]):
+            print("collision")
+            self.x -= 10
 
     def draw(self):
         self.cur_state.draw(self)
