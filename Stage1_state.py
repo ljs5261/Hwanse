@@ -65,7 +65,7 @@ def enter():
     game_world.add_objects(team_thorn_one, 1)
     game_world.add_objects(team_thorn_two, 1)
     game_world.add_objects(team_slime, 1)
-    #game_world.add_object(pig, 1)
+    game_world.add_object(pig, 1)
     game_world.add_object(dumpling, 1)
     game_world.add_object(hell_gate, 1)
 
