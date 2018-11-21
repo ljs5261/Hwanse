@@ -45,6 +45,24 @@ def collide(a, b):
     return True
 
 
+def collide_two(a, b):
+    left_a, bottom_a, right_a, top_a = a.get_bb()
+    left_b, bottom_b, right_b, top_b = b.get_bb_one()
+    left_b1, bottom_b1, right_b1, top_b1 = b.get_bb_two()
+
+    if left_a > right_b: return False
+    if right_a < left_b: return False
+    if top_a < bottom_b: return False
+    if bottom_a > top_b: return False
+
+    if left_a > right_b1: return False
+    if right_a < left_b1: return False
+    if top_a < bottom_b1: return False
+    if bottom_a > top_b1: return False
+
+    return True
+
+
 def enter():
     global ataho, team_grass, team_bg, team_tree, team_wolf, team_thorn_one, team_thorn_two, team_slime, pig, dumpling
     global hell_gate, snake, wolf
