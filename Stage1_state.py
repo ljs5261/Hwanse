@@ -67,7 +67,7 @@ def enter():
     game_world.add_objects(team_slime, 1)
     game_world.add_object(pig, 1)
     game_world.add_object(dumpling, 1)
-    game_world.add_object(hell_gate, 1)
+    game_world.add_object(hell_gate, 0)
 
 
 def exit():
