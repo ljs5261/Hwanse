@@ -26,7 +26,7 @@ class Snake:
             pass
 
         ataho = Stage1_state.get_ataho()
-        if self.x - ataho.x < 100:
+        if Stage1_state.team_grass[3].x < 400:
             self.y -= 4 * (RUN_SPEED_PPS * game_framework.frame_time)
 
         if Stage1_state.collide(self, ataho):
