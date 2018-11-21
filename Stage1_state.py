@@ -18,6 +18,7 @@ ataho = None
 team_grass = []
 team_bg = []
 team_tree = []
+wolf = []
 team_wolf = []
 team_thorn_one = []
 team_thorn_two = []
@@ -46,15 +47,17 @@ def collide(a, b):
 
 def enter():
     global ataho, team_grass, team_bg, team_tree, team_wolf, team_thorn_one, team_thorn_two, team_slime, pig, dumpling
-    global hell_gate, snake
+    global hell_gate, snake, wolf
     ataho = Ataho()
-    team_grass = [Grass(i) for i in range(400, 7600, 800)]
-    team_bg = [BackGround(i) for i in range(400, 4200, 800)]
+    team_grass = [Grass(i) for i in range(400, 6800, 800)]
+    team_bg = [BackGround(i) for i in range(400, 3400, 800)]
     team_tree = [Tree(i) for i in range(800, 1400, 300)]
-    team_wolf = [Wolf() for i in range(1)]
+    wolf = Wolf(1200)
+    team_wolf = [Wolf(i) for i in range(3250, 3450, 50)]
+    team_wolf.append(wolf)
     team_thorn_one = [Thorn(i) for i in range(1600, 1720, 60)]
     team_thorn_two = [Thorn(i) for i in range(2000, 2120, 60)]
-    team_slime = [Slime(i) for i in range(2200, 2500, 100)]
+    team_slime = [Slime(i) for i in range(2200, 2600, 100)]
     pig = Pig()
     dumpling = Dumpling()
     hell_gate = Hellgate()

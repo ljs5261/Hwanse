@@ -34,18 +34,26 @@ class EnergyPa:
 
         for wolf in Stage1_state.team_wolf:
             if Stage1_state.collide(self, wolf):
-                game_world.remove_object(self)
                 wolf.life -= 20
-                if wolf.life <= 0:
+                game_world.remove_object(self)
+                print(wolf.life)
+                if wolf.life < 0:
                     game_world.remove_object(wolf)
 
         for slime in Stage1_state.team_slime:
             if Stage1_state.collide(self, slime):
-                print("COLLISION")
-                game_world.remove_object(self)
                 slime.life -= 20
-                if slime.life <= 0:
+                game_world.remove_object(self)
+                print(slime.life)
+                if slime.life < 0:
                     game_world.remove_object(slime)
+
+        if Stage1_state.collide(self, Stage1_state.pig):
+            Stage1_state.pig.life -= 20
+            game_world.remove_object(self)
+            print(Stage1_state.pig.life)
+            if Stage1_state.pig.life < 0:
+                game_world.remove_object(Stage1_state.pig)
 
     def draw(self):
         self.image.clip_draw(int(self.frame) * 34, 0, 34, 42, self.x, self.y)

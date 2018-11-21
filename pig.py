@@ -63,7 +63,7 @@ class PigScrollState:
 class Pig:
 
     def __init__(self):
-        self.x, self.y = 5500, 80
+        self.x, self.y = 4500, 80
         self.image = load_image('./Resource/Pig.png')
         self.frame = 0
         self.velocity = RUN_SPEED_PPS
@@ -71,7 +71,7 @@ class Pig:
         self.cur_state = IdleState
         self.dir = 0
         self.scroll_toggle = None
-        self.life = 140
+        self.life = 400
         self.collision_count = 0
 
     def draw(self):

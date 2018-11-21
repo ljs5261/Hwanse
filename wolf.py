@@ -1,6 +1,7 @@
 from pico2d import *
 import Stage1_state
 import game_framework
+import random
 
 PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter
 RUN_SPEED_MPS = 3                 # meter / second
@@ -61,17 +62,16 @@ class WolfScrollState:
 
 class Wolf:
 
-    def __init__(self):
-        self.x, self.y = 1400, 66
+    def __init__(self, x=0, y=66):
+        self.x, self.y = x, y
         self.image = load_image('./Resource/wolf.png')
         self.frame = 0
         self.velocity = RUN_SPEED_PPS
-        self.move_count = 0
+        self.move_count = random.randint(0, 60)
         self.cur_state = IdleState
         self.dir = 0
         self.scroll_toggle = None
         self.life = 140
-        self.collision_count = 0
 
     def draw(self):
         self.cur_state.draw(self)

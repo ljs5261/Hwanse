@@ -9,7 +9,7 @@ RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)       # pixel / second, 75
 
 class Snake:
     def __init__(self):
-        self.x, self.y = 2900, 500
+        self.x, self.y = 2900, 700
         self.image = load_image('./Resource/snake.png')
         self.scroll_toggle = None
         self.collision_count = 0
@@ -27,7 +27,7 @@ class Snake:
 
         ataho = Stage1_state.get_ataho()
         if self.x - ataho.x < 100:
-            self.y -= 3 * (RUN_SPEED_PPS * game_framework.frame_time)
+            self.y -= 4 * (RUN_SPEED_PPS * game_framework.frame_time)
 
         if Stage1_state.collide(self, ataho):
             if self.collision_count == 0:

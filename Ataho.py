@@ -200,12 +200,9 @@ class Ataho:
         self.cur_state.do(self)
         if len(self.event_que) > 0:
             event = self.event_que.pop()
-            print(self.cur_state)
-            print(event)
             self.cur_state.exit(self, event)         # 가장 오래된 이벤트에 의해 현재 상태를 나가고
             self.cur_state = next_state_table[self.cur_state][event]  # 그 이벤트에 의해 다음 상태로 변화
             self.cur_state.enter(self, event)       # 다음 상태로 들어간다
-            print(self.cur_state)
 
     def draw(self):
         self.cur_state.draw(self)
@@ -222,5 +219,3 @@ class Ataho:
 
     def get_bb(self):
         return self.x - 40, self.y - 50, self.x + 20, self.y + 50
-
-
