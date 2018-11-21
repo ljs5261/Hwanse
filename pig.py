@@ -91,7 +91,7 @@ class Pig:
         ataho = Stage1_state.get_ataho()
         if Stage1_state.collide(self, ataho):
             print("COLLISION")
-            ataho.life -= 10
+            ataho.life -= 30
             print(ataho.life)
             at_x1, at_y1, at_x2, at_y2 = ataho.get_bb()
             x1, y1, x2, y2 = self.get_bb()
@@ -100,7 +100,7 @@ class Pig:
             elif x2 - 20 < at_x1 < x2:
                 ataho.x += 10
             elif at_y1 < y2:
-                ataho.y = 270
+                ataho.y = 230
                 ataho.velocity = 0
 
     def handle_event(self, event):

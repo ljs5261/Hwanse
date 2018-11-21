@@ -15,7 +15,6 @@ class BackGround:
 
     def draw(self):
         self.image.draw(self.x, self.y)
-        draw_rectangle(*self.get_bb())
 
     def update(self):
         if Stage1_state.ataho.scroll_toggle:
@@ -29,8 +28,6 @@ class BackGround:
             if event.key == SDLK_RIGHT:
                 self.scroll_toggle = True
 
-    def get_bb(self):
-        return self.x - 400, self.y - 300, self.x + 400, self.y + 300
 
 
 

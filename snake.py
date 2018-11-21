@@ -3,15 +3,16 @@ import Stage1_state
 import game_framework
 
 PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter
-RUN_SPEED_MPS = 3                 # meter / second
+RUN_SPEED_MPS = 3                  # meter / second
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)       # pixel / second, 75
 
 
-class Tree:
-    def __init__(self, x):
-        self.x, self.y = x, 110
-        self.image = load_image('./Resource/tree.png')
+class Snake:
+    def __init__(self):
+        self.x, self.y = 2900, 500
+        self.image = load_image('./Resource/snake.png')
         self.scroll_toggle = None
+        self.collision_count = 0
 
     def draw(self):
         self.image.draw(self.x, self.y)
@@ -25,19 +26,14 @@ class Tree:
             pass
 
         ataho = Stage1_state.get_ataho()
+        if self.x - ataho.x < 100:
+            self.y -= 3 * (RUN_SPEED_PPS * game_framework.frame_time)
+
         if Stage1_state.collide(self, ataho):
-            print("COLLISION")
-            ataho.life -= 5
+            if self.collision_count == 0:
+                ataho.life -= 50
+                self.collision_count += 1
             print(ataho.life)
-            at_x1, at_y1, at_x2, at_y2 = ataho.get_bb()
-            x1, y1, x2, y2 = self.get_bb()
-            if x1 < at_x2 < x1 + 20:
-                ataho.x -= 10
-            elif x2 - 20 < at_x1 < x2:
-                ataho.x += 10
-            elif at_y1 < y2:
-                ataho.y = 270
-                ataho.velocity = 0
 
     def handle_event(self, event):
         if event.type == SDL_KEYDOWN:
@@ -45,4 +41,4 @@ class Tree:
                 self.scroll_toggle = True
 
     def get_bb(self):
-        return self.x - 60, self.y - 70, self.x + 60, self.y + 55
+        return self.x - 50, self.y - 50, self.x + 50, self.y + 50

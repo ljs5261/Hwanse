@@ -99,7 +99,7 @@ class Wolf:
             elif x2 - 20 < at_x1 < x2:
                 ataho.x += 10
             elif at_y1 < y2:
-                ataho.y = 270
+                ataho.y = 200
                 ataho.velocity = 0
 
     def handle_event(self, event):

@@ -188,9 +188,7 @@ class Ataho:
         self.timer = 0
         self.x_move = 0
         self.scroll_toggle = None
-        self.life = 400
-        self.flicker_count = 0
-        self.flicker_toggle = None
+        self.life = 800
         self.event_que = []
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
@@ -209,10 +207,6 @@ class Ataho:
             self.cur_state.enter(self, event)       # 다음 상태로 들어간다
             print(self.cur_state)
 
-        if Stage1_state.collide(self, Stage1_state.team_bg[-1]):
-            print("collision")
-            self.x -= 10
-
     def draw(self):
         self.cur_state.draw(self)
         draw_rectangle(*self.get_bb())
@@ -229,11 +223,4 @@ class Ataho:
     def get_bb(self):
         return self.x - 40, self.y - 50, self.x + 20, self.y + 50
 
-    def flicker(self):
-        if self.flicker_count % 2 == 0:
-            self.image.opacify(0.5)
-            self.flicker_count += 1
-        else:
-            self.image.opacify(1)
-            self.flicker_count += 1
 

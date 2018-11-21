@@ -1,7 +1,6 @@
 from pico2d import *
 import Stage1_state
 import game_framework
-import random
 
 PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter
 RUN_SPEED_MPS = 3                   # meter / second
@@ -33,10 +32,20 @@ class Slime:
         else:
             pass
 
-        if Stage1_state.collide(self, Stage1_state.ataho):
+        ataho = Stage1_state.get_ataho()
+        if Stage1_state.collide(self, ataho):
             print("COLLISION")
-            Stage1_state.ataho.life -= 10
-            print(Stage1_state.ataho.life)
+            ataho.life -= 5
+            print(ataho.life)
+            at_x1, at_y1, at_x2, at_y2 = ataho.get_bb()
+            x1, y1, x2, y2 = self.get_bb()
+            if x1 < at_x2 < x1 + 20:
+                ataho.x -= 10
+            elif x2 - 20 < at_x1 < x2:
+                ataho.x += 10
+            elif at_y1 < y2:
+                ataho.y = 170
+                ataho.velocity = 0
 
     def handle_event(self, event):
         if event.type == SDL_KEYDOWN:

@@ -23,7 +23,20 @@ class Hellgate:
         else:
             pass
 
+        ataho = Stage1_state.get_ataho()
+        if Stage1_state.collide(self, ataho):
+            print("COLLISION")
+            ataho.life -= 5
+            print(ataho.life)
+            at_x1, at_y1, at_x2, at_y2 = ataho.get_bb()
+            x1, y1, x2, y2 = self.get_bb()
+            if at_x2 > x1:
+                ataho.x -= 10
+
     def handle_event(self, event):
         if event.type == SDL_KEYDOWN:
             if event.key == SDLK_RIGHT:
                 self.scroll_toggle = True
+
+    def get_bb(self):
+        return self.x - 10, self.y - 60, self.x + 10, self.y + 10
