@@ -4,7 +4,7 @@ import game_framework
 
 from Ataho import Ataho
 from grass import Grass
-from BackGround import BackGround
+from BackGround_One import BackGround
 from tree import Tree
 from wolf import Wolf
 from thorn import Thorn

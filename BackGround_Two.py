@@ -10,18 +10,14 @@ RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER) / 2         # pixel / second, 
 class BackGround:
     def __init__(self, x):
         self.x, self.y = x, 300
-        self.image = load_image('./Resource/grassland.png')
+        self.image = load_image('./Resource/ForestHouse.png')
         self.scroll_toggle = None
 
     def draw(self):
         self.image.draw(self.x, self.y)
 
     def update(self):
-        if Stage1_state.ataho.scroll_toggle:
-            if self.scroll_toggle:
-                self.x -= (RUN_SPEED_PPS * game_framework.frame_time)
-        else:
-            pass
+        self.x -= (RUN_SPEED_PPS * game_framework.frame_time)
 
     def handle_event(self, event):
         if event.type == SDL_KEYDOWN:
