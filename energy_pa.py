@@ -39,6 +39,7 @@ class EnergyPa:
                 print(wolf.life)
                 if wolf.life < 0:
                     game_world.remove_object(wolf)
+                    Stage1_state.team_wolf.remove(wolf)
 
         for slime in Stage1_state.team_slime:
             if Stage1_state.collide(self, slime):
@@ -47,6 +48,7 @@ class EnergyPa:
                 print(slime.life)
                 if slime.life < 0:
                     game_world.remove_object(slime)
+                    Stage1_state.team_slime.remove(slime)
 
         if Stage1_state.collide(self, Stage1_state.pig):
             Stage1_state.pig.life -= 20
