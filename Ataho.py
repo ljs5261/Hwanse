@@ -3,6 +3,7 @@ import game_framework
 from energy_pa import EnergyPa
 import game_world
 # import Stage1_state
+from GwangPaCham import GwangPaCham
 
 # ataho run speed
 # 100pixel = 2m
@@ -39,6 +40,7 @@ key_event_table = {
 class GwangpachamState:
     @staticmethod
     def enter(ataho, event):
+        ataho.dir = 1
         ataho.x_move = 0
         ataho.scroll_toggle = False
         if event == S_DOWN:
@@ -54,15 +56,18 @@ class GwangpachamState:
         if ataho.gwangpacham_count % 12 == 0:
             ataho.frame = (ataho.frame + 1) % 4
         ataho.gwangpacham_count += 1
+        if ataho.frame == 3 and ataho.gwangpacham_creation_count == 0:
+            gwang = GwangPaCham(ataho.x + 400, ataho.y - 15)
+            game_world.add_object(gwang, 1)
+            ataho.gwangpacham_creation_count += 1
         if ataho.gwangpacham_count == 36:
             ataho.add_event(gwangpacham_end)
             ataho.gwangpacham_count = 0
+            ataho.gwangpacham_creation_count = 0
 
     @staticmethod
     def draw(ataho):
         ataho.image.clip_draw(ataho.frame * 180, 0, 180, 200, ataho.x, ataho.y)
-        if ataho.frame == 3:
-            delay(0.3)
 
 
 class JumpState:
@@ -230,6 +235,7 @@ class Ataho:
         self.life = 800
         self.stage = 1
         self.gwangpacham_count = 0
+        self.gwangpacham_creation_count = 0
         self.event_que = []
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
