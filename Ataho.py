@@ -17,12 +17,13 @@ VARIATION_OF_VELOCITY_MPS = (ACCELERATION_OF_GRAVITY * FRAME_TIME)  # meter / se
 VARIATION_OF_VELOCITY_PPS = (VARIATION_OF_VELOCITY_MPS * PIXEL_PER_METER)  # pixel / second, 80
 
 # ataho Action Speed
-TIME_PER_ACTION = 0.7
+TIME_PER_ACTION = 0.4
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
-FRAMES_PER_ACTION = 8
+FRAMES_PER_ACTION = 5
+
 
 # ataho Event
-RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SPACE_DOWN, A, LANDING = range(7)
+RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SPACE_DOWN, A, S_DOWN, LANDING, gwangpacham_end = range(9)
 
 key_event_table = {
     (SDL_KEYDOWN, SDLK_RIGHT): RIGHT_DOWN,
@@ -30,9 +31,38 @@ key_event_table = {
     (SDL_KEYUP, SDLK_RIGHT): RIGHT_UP,
     (SDL_KEYUP, SDLK_LEFT): LEFT_UP,
     (SDL_KEYDOWN, SDLK_SPACE): SPACE_DOWN,
-    (SDL_KEYDOWN, SDLK_a): A
-
+    (SDL_KEYDOWN, SDLK_a): A,
+    (SDL_KEYDOWN, SDLK_s): S_DOWN
 }
+
+
+class GwangpachamState:
+    @staticmethod
+    def enter(ataho, event):
+        ataho.x_move = 0
+        ataho.scroll_toggle = False
+        if event == S_DOWN:
+            ataho.frame = 0
+
+    @staticmethod
+    def exit(ataho, event):
+        pass
+
+    @staticmethod
+    def do(ataho):
+        ataho.y = 90
+        if ataho.gwangpacham_count % 12 == 0:
+            ataho.frame = (ataho.frame + 1) % 4
+        ataho.gwangpacham_count += 1
+        if ataho.gwangpacham_count == 36:
+            ataho.add_event(gwangpacham_end)
+            ataho.gwangpacham_count = 0
+
+    @staticmethod
+    def draw(ataho):
+        ataho.image.clip_draw(ataho.frame * 180, 0, 180, 200, ataho.x, ataho.y)
+        if ataho.frame == 3:
+            delay(0.3)
 
 
 class JumpState:
@@ -98,10 +128,6 @@ class IdleState:
             ataho.velocity += RUN_SPEED_PPS
         elif event == LEFT_DOWN:
             ataho.velocity -= RUN_SPEED_PPS
-        elif event == RIGHT_UP:
-            pass
-        elif event == LEFT_UP:
-            pass
 
     @staticmethod
     def exit(ataho, event):
@@ -176,14 +202,17 @@ class RunState:
 next_state_table = {
     IdleState: {RIGHT_UP: IdleState, LEFT_UP: IdleState,
                RIGHT_DOWN: RunState, LEFT_DOWN: RunState,
-               SPACE_DOWN: JumpState, A: IdleState, LANDING: IdleState},
+               SPACE_DOWN: JumpState, A: IdleState, LANDING: IdleState,
+               S_DOWN: GwangpachamState},
     RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState,
                RIGHT_DOWN: IdleState, LEFT_DOWN: IdleState,
-                SPACE_DOWN: JumpState, LANDING: RunState, A: RunState},
+                SPACE_DOWN: JumpState, LANDING: RunState, A: RunState, S_DOWN: RunState},
     JumpState: {RIGHT_UP: JumpState, LEFT_UP: JumpState,
                RIGHT_DOWN: JumpState, LEFT_DOWN: JumpState,
-                SPACE_DOWN: JumpState, LANDING: IdleState, A: JumpState}
-
+                SPACE_DOWN: JumpState, LANDING: IdleState, A: JumpState, S_DOWN: JumpState},
+    GwangpachamState: {gwangpacham_end : IdleState, RIGHT_UP: GwangpachamState, LEFT_UP: GwangpachamState,
+               RIGHT_DOWN: GwangpachamState, LEFT_DOWN: GwangpachamState, S_DOWN: GwangpachamState,
+                SPACE_DOWN: GwangpachamState, LANDING: GwangpachamState, A: GwangpachamState}
 }
 
 
@@ -200,6 +229,7 @@ class Ataho:
         self.scroll_toggle = None
         self.life = 800
         self.stage = 1
+        self.gwangpacham_count = 0
         self.event_que = []
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
