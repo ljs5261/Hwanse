@@ -2,6 +2,7 @@ from pico2d import *
 import game_framework
 import game_world
 # import Stage1_state
+import Stage2_state
 
 PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter
 RUN_SPEED_MPS = 4                 # meter / second
@@ -57,6 +58,15 @@ class EnergyPa:
             if Stage1_state.pig.life < 0:
                 game_world.remove_object(Stage1_state.pig)
 '''
+        for mummy in Stage2_state.team_mummy:
+            if Stage2_state.collide(self, mummy):
+                mummy.life -= 20
+                game_world.remove_object(self)
+                print(mummy.life)
+                if mummy.life < 0:
+                    game_world.remove_object(mummy)
+                    Stage2_state.team_mummy.remove(mummy)
+
     def draw(self):
         self.image.clip_draw(int(self.frame) * 34, 0, 34, 42, self.x, self.y)
         draw_rectangle(*self.get_bb())

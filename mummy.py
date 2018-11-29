@@ -19,8 +19,8 @@ class Mummy:
         self.y = 90
         self.image = load_image('./Resource/Mummy.png')
         self.frame = random.randint(0, 5)
-        self.velocity = random.uniform(RUN_SPEED_PPS, (1.5*RUN_SPEED_PPS))
-        self.life = 180
+        self.velocity = random.uniform((0.8*RUN_SPEED_PPS), (1.3*RUN_SPEED_PPS))
+        self.life = 160
 
     def draw(self):
         self.image.clip_draw(int(self.frame) * 80, 0, 80, 100, self.x, self.y)
