@@ -111,13 +111,23 @@ class IdleState:
     @staticmethod
     def do(ataho):
         ataho.y = 90
+        if ataho.stage == 2:
+            ataho.frame = (ataho.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 5
+        else:
+            pass
 
     @staticmethod
     def draw(ataho):
-        if ataho.dir == 1:
-            ataho.image.clip_draw(0, 300, 80, 100, ataho.x, ataho.y)
+        if ataho.stage == 1:
+            if ataho.dir == 1:
+                ataho.image.clip_draw(0, 300, 80, 100, ataho.x, ataho.y)
+            else:
+                ataho.image.clip_draw(0, 400, 80, 100, ataho.x, ataho.y)
         else:
-            ataho.image.clip_draw(0, 400, 80, 100, ataho.x, ataho.y)
+            if ataho.dir == 1:
+                ataho.image.clip_draw(int(ataho.frame) * 80, 300, 80, 100, ataho.x, ataho.y)
+            else:
+                ataho.image.clip_draw(int(ataho.frame) * 80, 400, 80, 100, ataho.x, ataho.y)
 
 
 class RunState:
@@ -189,6 +199,7 @@ class Ataho:
         self.x_move = 0
         self.scroll_toggle = None
         self.life = 800
+        self.stage = 1
         self.event_que = []
         self.cur_state = IdleState
         self.cur_state.enter(self, None)

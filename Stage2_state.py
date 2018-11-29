@@ -30,6 +30,7 @@ def collide(a, b):
 def enter():
     global ataho, team_bg, team_bamboo
     ataho = Ataho()
+    ataho.stage = 2
     game_world.objects = [[],[]]
     team_bg = [BackGround(i) for i in range(400, 2800, 800)]
     team_bamboo = [Bamboo(i) for i in range(400, 4400, 800)]
@@ -37,6 +38,7 @@ def enter():
     game_world.add_objects(team_bg, 0)
     game_world.add_objects(team_bamboo, 1)
     game_world.add_object(ataho, 1)
+
 
 def exit():
     game_world.clear()
