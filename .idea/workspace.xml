@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98de0ecf-7929-49d2-a060-e2f190ff2b88" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ataho.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ataho.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackGround_Two.py" beforeDir="false" afterPath="$PROJECT_DIR$/BackGround_Two.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stage1_state.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Stage2_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/Stage2_state.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bamboo.py" beforeDir="false" afterPath="$PROJECT_DIR$/bamboo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/energy_pa.py" beforeDir="false" afterPath="$PROJECT_DIR$/energy_pa.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/title_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/title_state.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mummy.py" beforeDir="false" afterPath="$PROJECT_DIR$/mummy.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,13 +44,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="76" />
-          <entry key="py" value="24792" />
+          <entry key="py" value="24831" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="76" />
-          <entry key="Python" value="24792" />
+          <entry key="Python" value="24831" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -79,8 +73,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Stage2_state.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="72" column="28" selection-start-line="72" selection-start-column="28" selection-end-line="72" selection-end-column="28" />
+            <state relative-caret-position="-775">
+              <caret line="31" column="12" lean-forward="true" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -115,8 +109,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mummy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="35" column="64" selection-start-line="35" selection-start-column="64" selection-end-line="35" selection-end-column="64" />
+            <state relative-caret-position="251">
+              <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -156,8 +150,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wolf.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="57" column="64" lean-forward="true" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="64" />
+            <state relative-caret-position="175">
+              <caret line="92" column="12" selection-start-line="92" selection-start-column="12" selection-end-line="102" selection-end-column="34" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
                 <marker date="1542805615542" expanded="true" signature="397:1000" ph="..." />
@@ -617,17 +611,6 @@
     <entry file="file://$PROJECT_DIR$/Resource/Mummy.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/wolf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="57" column="64" lean-forward="true" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="64" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-            <marker date="1542805615542" expanded="true" signature="397:1000" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Stage1_state.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-15">
@@ -697,18 +680,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Stage2_state.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="72" column="28" selection-start-line="72" selection-start-column="28" selection-end-line="72" selection-end-column="28" />
+        <state relative-caret-position="-775">
+          <caret line="31" column="12" lean-forward="true" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/wolf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="92" column="12" selection-start-line="92" selection-start-column="12" selection-end-line="102" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+            <marker date="1542805615542" expanded="true" signature="397:1000" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mummy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="35" column="64" selection-start-line="35" selection-start-column="64" selection-end-line="35" selection-end-column="64" />
+        <state relative-caret-position="251">
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>

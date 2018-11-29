@@ -36,7 +36,7 @@ def enter():
     game_world.objects = [[],[]]
     team_bg = [BackGround(i) for i in range(400, 2800, 800)]
     team_bamboo = [Bamboo(i) for i in range(400, 4400, 800)]
-    team_mummy = [Mummy() for i in range(5)]
+    team_mummy = [Mummy() for i in range(7)]
 
     game_world.add_objects(team_bg, 0)
     game_world.add_objects(team_bamboo, 1)

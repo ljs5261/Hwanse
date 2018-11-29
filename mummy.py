@@ -15,11 +15,11 @@ FRAMES_PER_ACTION = 8
 class Mummy:
 
     def __init__(self):
-        self.x = random.randint(600, 800)
+        self.x = random.randint(900, 1400)
         self.y = 90
         self.image = load_image('./Resource/Mummy.png')
         self.frame = random.randint(0, 5)
-        self.velocity = random.uniform(RUN_SPEED_PPS, (2*RUN_SPEED_PPS))
+        self.velocity = random.uniform(RUN_SPEED_PPS, (1.5*RUN_SPEED_PPS))
         self.life = 180
 
     def draw(self):
@@ -28,9 +28,21 @@ class Mummy:
 
     def update(self):
         self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 6
-        self.x -= 1
+        self.x -= (self.velocity * game_framework.frame_time)
 
         ataho = Stage2_state.get_ataho()
+        if Stage2_state.collide(self, ataho):
+            ataho.life -= 20
+            print(ataho.life)
+            at_x1, at_y1, at_x2, at_y2 = ataho.get_bb()
+            x1, y1, x2, y2 = self.get_bb()
+            if x1 < at_x2 < x1 + 20:
+                ataho.x -= 10
+            elif x2 - 20 < at_x1 < x2:
+                ataho.x += 10
+            elif at_y1 < y2:
+                ataho.y = 200
+                ataho.velocity = 0
 
     def get_bb(self):
         return self.x - 35, self.y - 40, self.x + 30, self.y + 40
