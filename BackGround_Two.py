@@ -1,5 +1,4 @@
 from pico2d import *
-import Stage1_state
 import game_framework
 
 PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter

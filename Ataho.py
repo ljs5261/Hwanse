@@ -2,7 +2,7 @@ from pico2d import *
 import game_framework
 from energy_pa import EnergyPa
 import game_world
-import Stage1_state
+# import Stage1_state
 
 # ataho run speed
 # 100pixel = 2m

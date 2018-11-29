@@ -5,10 +5,12 @@ import game_framework
 from Ataho import Ataho
 from BackGround_Two import BackGround
 from bamboo import Bamboo
+from mummy import Mummy
 
 ataho = None
 team_bg = []
 team_bamboo = []
+team_mummy = []
 
 
 def get_ataho():
@@ -28,16 +30,18 @@ def collide(a, b):
 
 
 def enter():
-    global ataho, team_bg, team_bamboo
+    global ataho, team_bg, team_bamboo, team_mummy
     ataho = Ataho()
     ataho.stage = 2
     game_world.objects = [[],[]]
     team_bg = [BackGround(i) for i in range(400, 2800, 800)]
     team_bamboo = [Bamboo(i) for i in range(400, 4400, 800)]
+    team_mummy = [Mummy() for i in range(5)]
 
     game_world.add_objects(team_bg, 0)
     game_world.add_objects(team_bamboo, 1)
     game_world.add_object(ataho, 1)
+    game_world.add_objects(team_mummy, 1)
 
 
 def exit():
@@ -62,16 +66,11 @@ def handle_events():
                 game_framework.quit()
         else:
             ataho.handle_event(event)
-            for bg in team_bg:
-                bg.handle_event(event)
-            for bamboo in team_bamboo:
-                bamboo.handle_event(event)
 
 
 def update():
     for game_object in game_world.all_objects():
         game_object.update()
-    print(ataho.scroll_toggle)
 
     delay(0.02)
 
