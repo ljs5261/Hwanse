@@ -19,6 +19,10 @@ lightning = None
 smashu = None
 
 
+def get_smashu():
+    return smashu
+
+
 def get_rinshang():
     return rinshang
 

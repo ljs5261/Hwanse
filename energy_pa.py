@@ -75,6 +75,14 @@ class EnergyPa:
             if rinshang.life < 0:
                 game_world.remove_object(rinshang)
 
+        smashu = Stage2_state.get_smashu()
+        if Stage2_state.collide(self, smashu):
+            smashu.life -= 20
+            game_world.remove_object(self)
+            print(smashu.life)
+            if smashu.life < 0:
+                game_world.remove_object(smashu)
+
     def draw(self):
         self.image.clip_draw(int(self.frame) * 34, 0, 34, 42, self.x, self.y)
         draw_rectangle(*self.get_bb())

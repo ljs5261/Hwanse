@@ -11,28 +11,44 @@ TIME_PER_ACTION = 0.3
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 4
 
+point_list = [(400, 90), (20, 300), (400, 580), (780, 300)]
+
+
+class FlyState:
+    @staticmethod
+    def do(smashu, p1, p2):
+        smashu.frame = (smashu.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 4
+        smashu.t += 1 / 100
+        smashu.x = (1 - smashu.t) * p1[0] + smashu.t * p2[0]
+        smashu.y = (1 - smashu.t) * p1[1] + smashu.t * p2[1]
+
+    @staticmethod
+    def draw(smashu):
+        smashu.image.clip_draw(int(smashu.frame) * 100, 0, 100, 100, smashu.x, smashu.y)
+        draw_rectangle(*smashu.get_bb())
+
 
 class Smashu:
 
     def __init__(self):
-        self.x = 2500
+        self.x = 400
         self.y = 90
         self.image = load_image('./Resource/smashu.png')
         self.frame = 0
         self.velocity = RUN_SPEED_PPS
         self.life = 500
+        self.t = 0
+        self.cur_state = FlyState
 
     def draw(self):
-        self.image.clip_draw(int(self.frame) * 100, 0, 100, 100, self.x, self.y)
-        draw_rectangle(*self.get_bb())
+        self.cur_state.draw(self)
 
     def update(self):
-        self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 4
-        self.x -= (self.velocity * game_framework.frame_time)
+        self.cur_state.do(self, point_list[0],point_list[1])
 
         ataho = Stage2_state.get_ataho()
         if Stage2_state.collide(self, ataho):
-            ataho.life -= 30
+            ataho.life -= 50
             print(ataho.life)
             at_x1, at_y1, at_x2, at_y2 = ataho.get_bb()
             x1, y1, x2, y2 = self.get_bb()
@@ -45,4 +61,4 @@ class Smashu:
                 ataho.velocity = 0
 
     def get_bb(self):
-        return self.x - 40, self.y - 40, self.x + 35, self.y + 40
+        return self.x - 45, self.y - 45, self.x + 45, self.y + 45
