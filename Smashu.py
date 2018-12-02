@@ -11,7 +11,7 @@ TIME_PER_ACTION = 0.3
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 4
 
-point_list = [(400, 90), (20, 300), (400, 580), (780, 300)]
+point_list = [(20, 300), (400, 580), (780, 300), (400, 90)]
 
 
 class FlyState:
@@ -39,12 +39,18 @@ class Smashu:
         self.life = 500
         self.t = 0
         self.cur_state = FlyState
+        self.i = -1
 
     def draw(self):
         self.cur_state.draw(self)
 
     def update(self):
-        self.cur_state.do(self, point_list[0],point_list[1])
+        self.cur_state.do(self, point_list[self.i], point_list[self.i+1])
+        if self.t >= 1:
+            self.t = 0
+            self.i += 1
+            if self.i == 3:
+                self.i = -1
 
         ataho = Stage2_state.get_ataho()
         if Stage2_state.collide(self, ataho):

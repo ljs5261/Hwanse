@@ -15,7 +15,7 @@ FRAMES_PER_ACTION = 3
 class Rinshang:
 
     def __init__(self):
-        self.x = 1900
+        self.x = 2200
         self.y = 90
         self.image = load_image('./Resource/rinshang_skill.png')
         self.frame = 0
