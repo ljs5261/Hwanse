@@ -9,15 +9,28 @@ RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)       # pixel / second, 75
 
 TIME_PER_ACTION = 0.3
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
-FRAMES_PER_ACTION = 4
+Fly_FRAMES_PER_ACTION = 4
+Walk_FRAMES_PER_ACTION = 5
 
-point_list = [(20, 300), (400, 580), (780, 300), (400, 90)]
+point_list = [(20, 300), (400, 580), (780, 300), (400, 85)]
+
+
+class WalkState:
+    @staticmethod
+    def do(smashu):
+        smashu.frame = (smashu.frame + Walk_FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 5
+        smashu.x -= (smashu.velocity * game_framework.frame_time)
+
+    @staticmethod
+    def draw(smashu):
+        smashu.image.clip_draw(int(smashu.frame) * 80, 100, 80, 100, smashu.x, smashu.y)
+        draw_rectangle(*smashu.get_bb())
 
 
 class FlyState:
     @staticmethod
     def do(smashu, p1, p2):
-        smashu.frame = (smashu.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 4
+        smashu.frame = (smashu.frame + Fly_FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 4
         smashu.t += 1 / 100
         smashu.x = (1 - smashu.t) * p1[0] + smashu.t * p2[0]
         smashu.y = (1 - smashu.t) * p1[1] + smashu.t * p2[1]
@@ -31,26 +44,31 @@ class FlyState:
 class Smashu:
 
     def __init__(self):
-        self.x = 400
-        self.y = 90
-        self.image = load_image('./Resource/smashu.png')
+        self.x = 4000
+        self.y = 85
+        self.image = load_image('./Resource/Smashu_full.png')
         self.frame = 0
         self.velocity = RUN_SPEED_PPS
         self.life = 500
         self.t = 0
-        self.cur_state = FlyState
+        self.cur_state = WalkState
         self.i = -1
 
     def draw(self):
         self.cur_state.draw(self)
 
     def update(self):
-        self.cur_state.do(self, point_list[self.i], point_list[self.i+1])
-        if self.t >= 1:
-            self.t = 0
-            self.i += 1
-            if self.i == 3:
-                self.i = -1
+        if self.cur_state == WalkState:
+            self.cur_state.do(self)
+            if self.x <= 400:
+                self.cur_state = FlyState
+        else:
+            self.cur_state.do(self, point_list[self.i], point_list[self.i+1])
+            if self.t >= 1:
+                self.t = 0
+                self.i += 1
+                if self.i == 3:
+                    self.i = -1
 
         ataho = Stage2_state.get_ataho()
         if Stage2_state.collide(self, ataho):

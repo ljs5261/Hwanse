@@ -29,6 +29,8 @@ class Rinshang:
     def update(self):
         self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 3
         self.x -= (self.velocity * game_framework.frame_time)
+        if self.x <= 250:
+            self.x = 770
 
         ataho = Stage2_state.get_ataho()
         if Stage2_state.collide(self, ataho):

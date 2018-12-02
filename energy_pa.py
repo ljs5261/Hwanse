@@ -67,21 +67,28 @@ class EnergyPa:
                     game_world.remove_object(mummy)
                     Stage2_state.team_mummy.remove(mummy)
 
-        rinshang = Stage2_state.get_rinshang()
-        if Stage2_state.collide(self, rinshang):
-            rinshang.life -= 20
-            game_world.remove_object(self)
-            print(rinshang.life)
-            if rinshang.life < 0:
-                game_world.remove_object(rinshang)
+        for gargoyle in Stage2_state.team_gargoyle:
+            if Stage2_state.collide(self, gargoyle):
+                gargoyle.life -= 20
+                game_world.remove_object(self)
+                print(gargoyle.life)
+                if gargoyle.life < 0:
+                    game_world.remove_object(gargoyle)
+                    Stage2_state.team_gargoyle.remove(gargoyle)
 
-        smashu = Stage2_state.get_smashu()
-        if Stage2_state.collide(self, smashu):
-            smashu.life -= 20
+        if Stage2_state.collide(self, Stage2_state.rinshang):
+            Stage2_state.rinshang.life -= 20
             game_world.remove_object(self)
-            print(smashu.life)
-            if smashu.life < 0:
-                game_world.remove_object(smashu)
+            print(Stage2_state.rinshang.life)
+            if Stage2_state.rinshang.life < 0:
+                game_world.remove_object(Stage2_state.rinshang)
+
+        if Stage2_state.collide(self, Stage2_state.smashu):
+            Stage2_state.smashu.life -= 20
+            game_world.remove_object(self)
+            print(Stage2_state.smashu.life)
+            if Stage2_state.smashu.life < 0:
+                game_world.remove_object(Stage2_state.smashu)
 
     def draw(self):
         self.image.clip_draw(int(self.frame) * 34, 0, 34, 42, self.x, self.y)

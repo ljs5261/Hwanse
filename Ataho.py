@@ -144,6 +144,7 @@ class IdleState:
         ataho.y = 90
         if ataho.stage == 2:
             ataho.frame = (ataho.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 5
+            ataho.x = clamp(25, ataho.x, 400)
         else:
             pass
 

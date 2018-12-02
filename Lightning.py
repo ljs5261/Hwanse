@@ -1,7 +1,7 @@
 from pico2d import *
 import Stage2_state
 import game_framework
-import random
+import game_world
 
 PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter
 RUN_SPEED_MPS = 3                 # meter / second
@@ -29,8 +29,9 @@ class Lightning:
         draw_rectangle(*self.get_bb())
 
     def update(self):
+        rinshang = Stage2_state.get_rinshang()
         self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 3
-        self.x -= (self.velocity * game_framework.frame_time)
+        self.x = rinshang.x - 100
         self.timer += 1
         if self.timer == 36:
             self.timer = 0
@@ -38,6 +39,9 @@ class Lightning:
         if self.timer <= 3 and Stage2_state.collide(self, ataho):
             ataho.life -= 50
             print(ataho.life)
+
+        if rinshang.life < 0:
+            game_world.remove_object(self)
 
     def get_bb(self):
         return self.x - 20, self.y - 280, self.x + 20, self.y + 280

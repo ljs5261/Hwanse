@@ -13,11 +13,13 @@ FRAMES_PER_ACTION = 8
 
 
 class Mummy:
+    image = None
 
     def __init__(self):
         self.x = random.randint(900, 1400)
         self.y = 90
-        self.image = load_image('./Resource/Mummy.png')
+        if Mummy.image == None:
+            Mummy.image = load_image('./Resource/Mummy.png')
         self.frame = random.randint(0, 5)
         self.velocity = random.uniform((0.8*RUN_SPEED_PPS), (1.3*RUN_SPEED_PPS))
         self.life = 160
