@@ -1,8 +1,8 @@
 from pico2d import *
 import game_framework
 import game_world
-# import Stage1_state
-import Stage2_state
+import Stage1_state
+# import Stage2_state
 
 PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter
 RUN_SPEED_MPS = 4                 # meter / second
@@ -33,7 +33,7 @@ class EnergyPa:
         if self.x < 0 or self.x > 800:
             game_world.remove_object(self)
 
-        '''for wolf in Stage1_state.team_wolf:
+        for wolf in Stage1_state.team_wolf:
             if Stage1_state.collide(self, wolf):
                 wolf.life -= 20
                 game_world.remove_object(self)
@@ -57,8 +57,8 @@ class EnergyPa:
             print(Stage1_state.pig.life)
             if Stage1_state.pig.life < 0:
                 game_world.remove_object(Stage1_state.pig)
-'''
-        for mummy in Stage2_state.team_mummy:
+
+        '''for mummy in Stage2_state.team_mummy:
             if Stage2_state.collide(self, mummy):
                 mummy.life -= 20
                 game_world.remove_object(self)
@@ -89,7 +89,7 @@ class EnergyPa:
             print(Stage2_state.smashu.life)
             if Stage2_state.smashu.life < 0:
                 game_world.remove_object(Stage2_state.smashu)
-
+'''
     def draw(self):
         self.image.clip_draw(int(self.frame) * 34, 0, 34, 42, self.x, self.y)
         draw_rectangle(*self.get_bb())

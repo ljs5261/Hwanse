@@ -15,8 +15,7 @@ FRAMES_PER_ACTION = 4
 class Lightning:
 
     def __init__(self):
-        rinshang = Stage2_state.get_rinshang()
-        self.x = rinshang.x - 100
+        self.x = Stage2_state.rinshang.x - 100
         self.y = 300
         self.image = load_image('./Resource/lightning.png')
         self.frame = 0
@@ -29,18 +28,17 @@ class Lightning:
         draw_rectangle(*self.get_bb())
 
     def update(self):
-        rinshang = Stage2_state.get_rinshang()
         self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 3
-        self.x = rinshang.x - 100
+        self.x = Stage2_state.rinshang.x - 100
         self.timer += 1
         if self.timer == 36:
             self.timer = 0
-        ataho = Stage2_state.get_ataho()
-        if self.timer <= 3 and Stage2_state.collide(self, ataho):
-            ataho.life -= 50
-            print(ataho.life)
 
-        if rinshang.life < 0:
+        if self.timer <= 3 and Stage2_state.collide(self, Stage2_state.ataho):
+            Stage2_state.ataho.life -= 50
+            print(Stage2_state.ataho.life)
+
+        if Stage2_state.rinshang.life < 0:
             game_world.remove_object(self)
 
     def get_bb(self):

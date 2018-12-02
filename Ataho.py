@@ -2,7 +2,6 @@ from pico2d import *
 import game_framework
 from energy_pa import EnergyPa
 import game_world
-# import Stage1_state
 from GwangPaCham import GwangPaCham
 
 # ataho run speed
@@ -10,7 +9,7 @@ from GwangPaCham import GwangPaCham
 PIXEL_PER_METER = (100.0 / 2.0)     # pixel / meter
 RUN_SPEED_MPS = 3              # meter / second
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)       # pixel / second, 75
-JUMP_YSPEED_PPS = 7.5 * RUN_SPEED_PPS  # pixel / second
+JUMP_YSPEED_PPS = 9.0 * RUN_SPEED_PPS  # pixel / second
 JUMP_XSPEED_PPS = RUN_SPEED_PPS  # pixel / second
 ACCELERATION_OF_GRAVITY = 7.0     # meter / second * second
 FRAME_TIME = 0.16

@@ -11,6 +11,7 @@ from Lightning import Lightning
 from Smashu import Smashu
 from Gargoyle import Gargoyle
 
+
 ataho = None
 team_bg = []
 team_bamboo = []
@@ -19,14 +20,6 @@ rinshang = None
 lightning = None
 smashu = None
 team_gargoyle = []
-
-
-def get_smashu():
-    return smashu
-
-
-def get_rinshang():
-    return rinshang
 
 
 def get_ataho():
@@ -49,7 +42,6 @@ def enter():
     global ataho, team_bg, team_bamboo, team_mummy, rinshang, lightning, smashu, team_gargoyle
     ataho = Ataho()
     ataho.stage = 2
-    game_world.objects = [[],[]]
     team_bg = [BackGround(i) for i in range(400, 6800, 800)]
     team_bamboo = [Bamboo(i) for i in range(400, 9200, 800)]
     team_mummy = [Mummy() for i in range(7)]
@@ -58,6 +50,7 @@ def enter():
     smashu = Smashu()
     team_gargoyle = [Gargoyle() for i in range(14)]
 
+    game_world.add_object(ataho, 1)
     game_world.add_objects(team_bg, 0)
     game_world.add_objects(team_bamboo, 1)
     game_world.add_object(ataho, 1)
@@ -81,7 +74,7 @@ def resume():
 
 
 def handle_events():
-    global ataho, team_bg, team_bamboo
+    global ataho
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -95,8 +88,6 @@ def handle_events():
 def update():
     for game_object in game_world.all_objects():
         game_object.update()
-
-    delay(0.02)
 
 
 def draw():
