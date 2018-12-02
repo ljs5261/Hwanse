@@ -8,6 +8,7 @@ from bamboo import Bamboo
 from mummy import Mummy
 from Rinshang import Rinshang
 from Lightning import Lightning
+from Smashu import Smashu
 
 ataho = None
 team_bg = []
@@ -15,6 +16,7 @@ team_bamboo = []
 team_mummy = []
 rinshang = None
 lightning = None
+smashu = None
 
 
 def get_rinshang():
@@ -38,7 +40,7 @@ def collide(a, b):
 
 
 def enter():
-    global ataho, team_bg, team_bamboo, team_mummy, rinshang, lightning
+    global ataho, team_bg, team_bamboo, team_mummy, rinshang, lightning, smashu
     ataho = Ataho()
     ataho.stage = 2
     game_world.objects = [[],[]]
@@ -47,6 +49,7 @@ def enter():
     team_mummy = [Mummy() for i in range(7)]
     rinshang = Rinshang()
     lightning = Lightning()
+    smashu = Smashu()
 
     game_world.add_objects(team_bg, 0)
     game_world.add_objects(team_bamboo, 1)
@@ -54,6 +57,7 @@ def enter():
     game_world.add_objects(team_mummy, 1)
     game_world.add_object(rinshang, 1)
     game_world.add_object(lightning, 1)
+    game_world.add_object(smashu, 1)
 
 
 def exit():
