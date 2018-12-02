@@ -67,6 +67,14 @@ class EnergyPa:
                     game_world.remove_object(mummy)
                     Stage2_state.team_mummy.remove(mummy)
 
+        rinshang = Stage2_state.get_rinshang()
+        if Stage2_state.collide(self, rinshang):
+            rinshang.life -= 20
+            game_world.remove_object(self)
+            print(rinshang.life)
+            if rinshang.life < 0:
+                game_world.remove_object(rinshang)
+
     def draw(self):
         self.image.clip_draw(int(self.frame) * 34, 0, 34, 42, self.x, self.y)
         draw_rectangle(*self.get_bb())

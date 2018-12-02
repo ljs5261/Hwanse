@@ -6,11 +6,17 @@ from Ataho import Ataho
 from BackGround_Two import BackGround
 from bamboo import Bamboo
 from mummy import Mummy
+from Rinshang import Rinshang
 
 ataho = None
 team_bg = []
 team_bamboo = []
 team_mummy = []
+rinshang = None
+
+
+def get_rinshang():
+    return rinshang
 
 
 def get_ataho():
@@ -30,18 +36,20 @@ def collide(a, b):
 
 
 def enter():
-    global ataho, team_bg, team_bamboo, team_mummy
+    global ataho, team_bg, team_bamboo, team_mummy, rinshang
     ataho = Ataho()
     ataho.stage = 2
     game_world.objects = [[],[]]
     team_bg = [BackGround(i) for i in range(400, 2800, 800)]
     team_bamboo = [Bamboo(i) for i in range(400, 4400, 800)]
     team_mummy = [Mummy() for i in range(7)]
+    rinshang = Rinshang()
 
     game_world.add_objects(team_bg, 0)
     game_world.add_objects(team_bamboo, 1)
     game_world.add_object(ataho, 1)
     game_world.add_objects(team_mummy, 1)
+    game_world.add_object(rinshang, 1)
 
 
 def exit():
