@@ -22,7 +22,6 @@ class Slime:
 
     def draw(self):
         self.image.clip_draw(int(self.frame) * 50, 0, 50, 50, self.x, self.y)
-        draw_rectangle(*self.get_bb())
 
     def update(self):
         self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 8

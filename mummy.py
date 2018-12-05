@@ -26,7 +26,6 @@ class Mummy:
 
     def draw(self):
         self.image.clip_draw(int(self.frame) * 80, 0, 80, 100, self.x, self.y)
-        draw_rectangle(*self.get_bb())
 
     def update(self):
         self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 6

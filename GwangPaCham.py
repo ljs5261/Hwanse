@@ -11,7 +11,6 @@ class GwangPaCham:
 
     def draw(self):
         self.image.clip_draw(0, 500 - self.frame * 100, 800, 100, self.x, self.y)
-        draw_rectangle(*self.get_bb())
         delay(0.05)
 
     def update(self):

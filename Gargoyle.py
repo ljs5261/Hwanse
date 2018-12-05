@@ -33,7 +33,6 @@ class AttackState:
     @staticmethod
     def draw(gargoyle):
         gargoyle.image.clip_draw(int(gargoyle.frame) * 100, 100, 100, 100, gargoyle.x, gargoyle.y)
-        draw_rectangle(*gargoyle.get_bb())
 
 
 class Gargoyle:

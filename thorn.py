@@ -15,7 +15,6 @@ class Thorn:
 
     def draw(self):
         self.image.draw(self.x, self.y)
-        draw_rectangle(*self.get_bb())
 
     def update(self):
         if Stage1_state.ataho.scroll_toggle:

@@ -75,7 +75,6 @@ class Wolf:
 
     def draw(self):
         self.cur_state.draw(self)
-        draw_rectangle(*self.get_bb())
 
     def update(self):
         self.cur_state.do(self)

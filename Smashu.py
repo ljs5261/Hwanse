@@ -24,7 +24,6 @@ class WalkState:
     @staticmethod
     def draw(smashu):
         smashu.image.clip_draw(int(smashu.frame) * 80, 100, 80, 100, smashu.x, smashu.y)
-        draw_rectangle(*smashu.get_bb())
 
 
 class FlyState:
@@ -38,7 +37,6 @@ class FlyState:
     @staticmethod
     def draw(smashu):
         smashu.image.clip_draw(int(smashu.frame) * 100, 0, 100, 100, smashu.x, smashu.y)
-        draw_rectangle(*smashu.get_bb())
 
 
 class Smashu:
